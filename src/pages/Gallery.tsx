@@ -158,8 +158,8 @@ const Gallery = () => {
 
       {/* Masonry Gallery Grid */}
       <section className="py-24 bg-coffee-cream">
-        <div className="container mx-auto px-6">
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="columns-2 md:columns-2 lg:columns-3 gap-4 md:gap-8 space-y-4 md:space-y-8">
             {galleryImages.map((img, index) => (
               <motion.div
                 key={index}
@@ -167,7 +167,7 @@ const Gallery = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="relative group cursor-pointer overflow-hidden rounded-[2rem] break-inside-avoid shadow-sm hover:shadow-xl transition-all duration-500"
+                className="relative group cursor-pointer overflow-hidden rounded-2xl md:rounded-[2rem] break-inside-avoid shadow-sm hover:shadow-xl transition-all duration-500"
                 onClick={() => openLightbox(index)}
               >
                 <img 
@@ -175,9 +175,9 @@ const Gallery = () => {
                   alt={img.caption} 
                   className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-coffee-petrol/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
-                  <span className="text-coffee-yellow font-bold text-xs uppercase tracking-widest mb-2">{img.category}</span>
-                  <h3 className="text-xl font-serif text-coffee-cream">{img.caption}</h3>
+                <div className="absolute inset-0 bg-coffee-petrol/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4 md:p-8">
+                  <span className="text-coffee-yellow font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1 md:mb-2">{img.category}</span>
+                  <h3 className="text-sm md:text-xl font-serif text-coffee-cream line-clamp-2">{img.caption}</h3>
                 </div>
               </motion.div>
             ))}
