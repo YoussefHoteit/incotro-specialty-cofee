@@ -39,7 +39,7 @@ const MenuPreview = () => {
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="flex items-center justify-between mb-16">
           <div className="flex flex-col">
-            <span className="text-coffee-red font-bold text-xs uppercase tracking-[0.3em] mb-2">Our Favorites</span>
+            <span className="text-coffee-yellow font-bold text-xs uppercase tracking-[0.3em] mb-2">Our Favorites</span>
             <h2 className="text-4xl md:text-5xl font-serif text-coffee-petrol">Crafted with Precision</h2>
           </div>
           <div className="hidden md:block flex-grow h-[1px] bg-coffee-blue/10 mx-12" />

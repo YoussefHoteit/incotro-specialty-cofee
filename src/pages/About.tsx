@@ -189,7 +189,7 @@ const About = () => {
                 { label: 'Shared Moments', desc: 'The joy of the first sip.' }
               ].map((step, i) => (
                 <div key={i} className="relative z-10 text-center">
-                  <div className="w-12 h-12 bg-coffee-brown text-coffee-cream rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
+                  <div className="w-12 h-12 bg-coffee-yellow text-coffee-petrol rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
                     {i + 1}
                   </div>
                   <h4 className="font-bold text-coffee-petrol mb-2">{step.label}</h4>
@@ -210,7 +210,7 @@ const About = () => {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto"
           >
-            <div className="text-coffee-red mb-8">
+            <div className="text-coffee-yellow mb-8">
               <Users size={48} className="mx-auto" />
             </div>
             <blockquote className="text-3xl md:text-4xl font-serif text-coffee-petrol italic mb-8 leading-tight">

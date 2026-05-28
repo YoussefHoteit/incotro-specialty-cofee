@@ -179,7 +179,7 @@ const Gallery = () => {
             <p className="text-lg text-coffee-charcoal/60 mb-10">
               Join our community on Instagram for daily doses of specialty coffee and Bucharest vibes.
             </p>
-            <button className="bg-coffee-petrol text-coffee-cream px-10 py-4 rounded-full font-bold text-lg hover:bg-coffee-blue transition-all inline-flex items-center group">
+            <button className="bg-coffee-yellow text-coffee-petrol px-10 py-4 rounded-full font-bold text-lg hover:bg-coffee-yellow/90 transition-all inline-flex items-center group">
               Follow Us
               <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" />
             </button>
