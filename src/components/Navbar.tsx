@@ -9,7 +9,6 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +29,7 @@ const Navbar = () => {
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || !isHomePage
+        isScrolled
           ? 'bg-coffee-cream text-coffee-petrol py-3 shadow-sm border-b border-coffee-blue/5' 
           : 'bg-transparent text-coffee-cream py-6'
       }`}
