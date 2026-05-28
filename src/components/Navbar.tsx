@@ -24,7 +24,7 @@ const Navbar = () => {
     { name: 'Menu', href: '/menu' },
     { name: 'About Us', href: '/about' },
     { name: 'Gallery', href: '/gallery' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Contact', href: isHomePage ? '#contact' : '/#contact' },
   ];
 
   return (
