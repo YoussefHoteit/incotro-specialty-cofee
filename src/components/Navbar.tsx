@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -24,7 +24,7 @@ const Navbar = () => {
     { name: 'Menu', href: '/menu' },
     { name: 'About Us', href: '/about' },
     { name: 'Gallery', href: '/gallery' },
-    { name: 'Contact', href: isHomePage ? '#contact' : '/#contact' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
