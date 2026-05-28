@@ -23,6 +23,11 @@ const galleryImages = [
     caption: "Signature yellow cup",
   },
   {
+    url: "/gallery/coffee-table-sun.jpg",
+    category: "Coffee",
+    caption: "Sun-drenched mornings",
+  },
+  {
     url: "/gallery/cat-latte-art.jpg",
     category: "Art",
     caption: "Playful details",
@@ -31,6 +36,11 @@ const galleryImages = [
     url: "/gallery/yellow-car-side.jpg",
     category: "Vibe",
     caption: "The iconic yellow Fiat",
+  },
+  {
+    url: "/gallery/coffee-cookie-tulip.jpg",
+    category: "Details",
+    caption: "The perfect pairing",
   },
   {
     url: "/gallery/interior-chandelier.jpg",
@@ -76,6 +86,11 @@ const galleryImages = [
     url: "/gallery/snow-car.jpg",
     category: "Vibe",
     caption: "Winter at înCotro",
+  },
+  {
+    url: "/gallery/outdoor-umbrella.jpg",
+    category: "Vibe",
+    caption: "Summer shade",
   },
   {
     url: "/gallery/swan-latte-art.jpg",
