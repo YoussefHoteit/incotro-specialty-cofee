@@ -28,10 +28,10 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-md ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-coffee-cream/80 text-coffee-petrol py-3 shadow-lg border-b border-coffee-blue/5' 
-          : 'bg-white/5 text-coffee-cream py-6 border-b border-white/10'
+          ? 'bg-coffee-cream text-coffee-petrol py-3 shadow-sm border-b border-coffee-blue/5' 
+          : 'bg-transparent text-coffee-cream py-6'
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
@@ -54,7 +54,7 @@ const Navbar = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-coffee-yellow transition-all group-hover:w-full" />
             </Link>
           ))}
-          <button className="bg-coffee-yellow/90 backdrop-blur-sm text-coffee-petrol px-5 py-2 rounded-full text-sm font-bold hover:bg-coffee-yellow transition-colors border border-white/20">
+          <button className="bg-coffee-yellow text-coffee-petrol px-5 py-2 rounded-full text-sm font-bold hover:bg-coffee-gold transition-colors">
             Visit Us
           </button>
         </div>
@@ -75,7 +75,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-coffee-cream/95 backdrop-blur-xl text-coffee-petrol p-6 md:hidden shadow-xl border-t border-coffee-blue/5"
+            className="absolute top-full left-0 right-0 bg-coffee-cream text-coffee-petrol p-6 md:hidden shadow-xl border-t border-coffee-blue/5"
           >
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
