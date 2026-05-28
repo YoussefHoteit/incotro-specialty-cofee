@@ -9,7 +9,6 @@ import MenuPreview from '@/components/MenuPreview';
 import Community from '@/components/Community';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
-import { MadeWithDyad } from "@/components/made-with-dyad";
 
 const Index = () => {
   return (
@@ -22,7 +21,6 @@ const Index = () => {
       <Community />
       <FinalCTA />
       <Footer />
-      <MadeWithDyad />
     </main>
   );
 };

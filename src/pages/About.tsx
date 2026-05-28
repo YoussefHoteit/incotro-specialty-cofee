@@ -4,7 +4,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Bean, Users, Sparkles, Coffee, ArrowRight } from 'lucide-react';
 
 const ValueCard = ({ icon: Icon, title, desc }: { icon: any, title: string, desc: string }) => (
@@ -235,7 +234,6 @@ const About = () => {
       </section>
 
       <Footer />
-      <MadeWithDyad />
     </main>
   );
 };

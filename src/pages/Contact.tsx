@@ -4,7 +4,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { MapPin, Phone, Mail, Clock, Send, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -194,7 +193,6 @@ const Contact = () => {
       </section>
 
       <Footer />
-      <MadeWithDyad />
     </main>
   );
 };

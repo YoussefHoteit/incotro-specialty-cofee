@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { X, ChevronLeft, ChevronRight, Instagram } from 'lucide-react';
 
 const galleryImages = [
@@ -63,7 +62,7 @@ const Gallery = () => {
 
   const openLightbox = (index: number) => setSelectedImage(index);
   const closeLightbox = () => setSelectedImage(null);
-  const nextImage = () => setSelectedImage((prev) => (prev !== null ? (prev + 1) % galleryImages.length : null));
+  const nextImage = () => setSelectedImage((prev) => (prev !== null ? (prev + 1) : null));
   const prevImage = () => setSelectedImage((prev) => (prev !== null ? (prev - 1 + galleryImages.length) % galleryImages.length : null));
 
   return (
@@ -241,7 +240,6 @@ const Gallery = () => {
       </AnimatePresence>
 
       <Footer />
-      <MadeWithDyad />
     </main>
   );
 };
