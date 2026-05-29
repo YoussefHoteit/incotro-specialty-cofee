@@ -39,7 +39,7 @@ const SignatureExperience = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
           {images.map((img, index) => (
             <motion.div
               key={index}
@@ -47,7 +47,9 @@ const SignatureExperience = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="group relative overflow-hidden rounded-[2.5rem] aspect-[4/5]"
+              className={`group relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] aspect-[4/5] ${
+                index === 2 ? 'col-span-2 md:col-span-1 max-w-[50%] mx-auto md:max-w-none' : ''
+              }`}
             >
               <img 
                 src={img.url} 
@@ -55,9 +57,9 @@ const SignatureExperience = () => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-coffee-petrol via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-              <div className="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 className="text-2xl font-bold text-coffee-yellow mb-2">{img.title}</h3>
-                <p className="text-coffee-cream/80 text-sm uppercase tracking-widest">{img.desc}</p>
+              <div className="absolute bottom-0 left-0 p-4 md:p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <h3 className="text-lg md:text-2xl font-bold text-coffee-yellow mb-1 md:mb-2">{img.title}</h3>
+                <p className="text-[10px] md:text-sm text-coffee-cream/80 uppercase tracking-widest">{img.desc}</p>
               </div>
               {/* Tulip Red Accent Detail */}
               <div className="absolute top-6 right-6 w-2 h-2 bg-coffee-red rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
