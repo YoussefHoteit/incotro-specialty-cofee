@@ -27,13 +27,14 @@ const About = () => {
 
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center overflow-hidden bg-coffee-blue">
-        <div className="absolute inset-0 z-0 opacity-40">
+        <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" 
             alt="Interior" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-coffee-petrol to-transparent" />
+          {/* Bottom Fade Transition to Coffee Cream */}
+          <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-coffee-cream via-coffee-cream/20 to-transparent" />
         </div>
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
