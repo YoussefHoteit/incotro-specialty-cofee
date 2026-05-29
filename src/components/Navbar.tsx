@@ -28,13 +28,13 @@ const Navbar = () => {
 
   // Force solid state on pages with light backgrounds (like Menu)
   const isSolidPage = location.pathname === '/menu';
-  const showSolid = isScrolled || isSolidPage;
+  const showGlassy = isScrolled || isSolidPage;
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        showSolid
-          ? 'bg-coffee-cream text-coffee-petrol py-3 shadow-sm border-b border-coffee-blue/5' 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        showGlassy
+          ? 'bg-coffee-cream/70 backdrop-blur-md text-coffee-petrol py-3 shadow-sm border-b border-coffee-blue/10' 
           : 'bg-transparent text-coffee-cream py-6'
       }`}
     >
@@ -58,7 +58,7 @@ const Navbar = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-coffee-yellow transition-all group-hover:w-full" />
             </Link>
           ))}
-          <button className="bg-coffee-yellow text-coffee-petrol px-5 py-2 rounded-full text-sm font-bold hover:bg-coffee-gold transition-colors">
+          <button className="bg-coffee-yellow text-coffee-petrol px-5 py-2 rounded-full text-sm font-bold hover:bg-coffee-gold transition-colors shadow-sm">
             Visit Us
           </button>
         </div>
@@ -79,7 +79,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-coffee-cream text-coffee-petrol p-6 md:hidden shadow-xl border-t border-coffee-blue/5"
+            className="absolute top-full left-0 right-0 bg-coffee-cream/95 backdrop-blur-xl text-coffee-petrol p-6 md:hidden shadow-xl border-t border-coffee-blue/5"
           >
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
@@ -92,7 +92,7 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <button className="bg-coffee-yellow text-coffee-petrol w-full py-3 rounded-xl font-bold mt-4">
+              <button className="bg-coffee-yellow text-coffee-petrol w-full py-3 rounded-xl font-bold mt-4 shadow-md">
                 Visit Us
               </button>
             </div>
