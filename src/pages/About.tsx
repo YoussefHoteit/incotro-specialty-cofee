@@ -295,34 +295,58 @@ const About = () => {
         </div>
       </section>
 
-      {/* Coffee Philosophy */}
-      <section className="py-24 bg-coffee-cream">
+      {/* Redesigned Coffee Philosophy Section */}
+      <section className="py-32 bg-coffee-cream relative overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-serif text-coffee-petrol mb-6">Our Coffee Philosophy</h2>
-              <p className="text-lg text-coffee-charcoal/70">
+            <div className="text-center mb-24">
+              <div className="flex items-center justify-center space-x-3 mb-4">
+                <div className="w-1.5 h-1.5 rounded-full bg-coffee-yellow" />
+                <span className="text-[10px] font-bold text-coffee-gold uppercase tracking-[0.3em]">The Ritual</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-coffee-yellow" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-serif text-coffee-petrol mb-6">Our Coffee Philosophy</h2>
+              <p className="text-lg text-coffee-charcoal/70 font-light max-w-2xl mx-auto leading-relaxed">
                 We focus on balance, clarity, and presentation. Every cup is a result of a meticulous process that starts long before the beans reach our bar.
               </p>
             </div>
 
-            {/* Timeline */}
-            <div className="grid md:grid-cols-4 gap-8 relative">
-              <div className="absolute top-1/2 left-0 w-full h-[1px] bg-coffee-blue/10 hidden md:block" />
-              {[
-                { label: 'Bean Selection', desc: 'Sourcing seasonal micro-lots.' },
-                { label: 'Brewing', desc: 'Precision in every gram and second.' },
-                { label: 'Latte Art', desc: 'The final touch of craftsmanship.' },
-                { label: 'Shared Moments', desc: 'The joy of the first sip.' }
-              ].map((step, i) => (
-                <div key={i} className="relative z-10 text-center">
-                  <div className="w-12 h-12 bg-coffee-yellow text-coffee-petrol rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
-                    {i + 1}
-                  </div>
-                  <h4 className="font-bold text-coffee-petrol mb-2">{step.label}</h4>
-                  <p className="text-xs text-coffee-charcoal/60">{step.desc}</p>
-                </div>
-              ))}
+            {/* Timeline Container */}
+            <div className="relative px-4 md:px-0">
+              {/* Desktop Connecting Line */}
+              <div className="absolute top-[18px] left-0 w-full h-[1px] bg-coffee-yellow/20 hidden md:block" />
+              
+              {/* Mobile Connecting Line */}
+              <div className="absolute top-0 left-[18px] w-[1px] h-full bg-coffee-yellow/20 md:hidden" />
+
+              <div className="grid md:grid-cols-4 gap-10 md:gap-8">
+                {[
+                  { label: 'Bean Selection', desc: 'Sourcing seasonal micro-lots.' },
+                  { label: 'Brewing', desc: 'Precision in every gram and second.' },
+                  { label: 'Latte Art', desc: 'The final touch of craftsmanship.' },
+                  { label: 'Shared Moments', desc: 'The joy of the first sip.' }
+                ].map((step, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.15, duration: 0.8 }}
+                    className="relative z-10 flex md:flex-col items-start md:items-center text-left md:text-center group"
+                  >
+                    {/* Step Number Circle */}
+                    <div className="flex-shrink-0 w-9 h-9 bg-coffee-yellow text-coffee-petrol rounded-full flex items-center justify-center shadow-sm mb-0 md:mb-8 mr-6 md:mr-0 group-hover:scale-110 transition-transform duration-500">
+                      <span className="font-bold text-xs">{i + 1}</span>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="pt-1 md:pt-0">
+                      <h4 className="text-base md:text-lg font-bold text-coffee-petrol mb-2 tracking-tight">{step.label}</h4>
+                      <p className="text-[13px] md:text-sm text-coffee-charcoal/60 font-light leading-relaxed">{step.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
