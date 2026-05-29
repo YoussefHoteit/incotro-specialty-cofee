@@ -43,11 +43,11 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-lg hover:bg-coffee-gold transition-all flex items-center justify-center group">
+              <button className="bg-coffee-yellow/80 backdrop-blur-md border border-white/20 text-coffee-petrol px-6 py-3 rounded-full font-bold text-base hover:bg-coffee-yellow transition-all flex items-center justify-center group">
                 View Menu
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
               </button>
-              <button className="border-2 border-coffee-cream text-coffee-cream px-8 py-4 rounded-full font-bold text-lg hover:bg-coffee-cream hover:text-coffee-petrol transition-all">
+              <button className="bg-white/10 backdrop-blur-md border border-white/30 text-coffee-cream px-6 py-3 rounded-full font-bold text-base hover:bg-white/20 transition-all">
                 Visit Us
               </button>
             </div>
