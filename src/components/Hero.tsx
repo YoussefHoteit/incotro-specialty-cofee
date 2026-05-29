@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Coffee, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -43,13 +44,19 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-coffee-yellow/80 backdrop-blur-md border border-white/20 text-coffee-petrol px-6 py-3 rounded-full font-bold text-base hover:bg-coffee-yellow transition-all flex items-center justify-center group">
+              <Link 
+                to="/menu" 
+                className="bg-coffee-yellow/80 backdrop-blur-md border border-white/20 text-coffee-petrol px-6 py-3 rounded-full font-bold text-base hover:bg-coffee-yellow transition-all flex items-center justify-center group"
+              >
                 View Menu
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-              </button>
-              <button className="bg-white/10 backdrop-blur-md border border-white/30 text-coffee-cream px-6 py-3 rounded-full font-bold text-base hover:bg-white/20 transition-all">
+              </Link>
+              <Link 
+                to="/contact" 
+                className="bg-white/10 backdrop-blur-md border border-white/30 text-coffee-cream px-6 py-3 rounded-full font-bold text-base hover:bg-white/20 transition-all text-center"
+              >
                 Visit Us
-              </button>
+              </Link>
             </div>
           </motion.div>
         </div>
