@@ -61,76 +61,6 @@ const About = () => {
                 initial={{ width: 0 }}
                 animate={{ width: 48 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="h<dyad-write path="src/pages/About.tsx" description="Redesigning 'The înCotro Vibe' section with an immersive editorial layout, modern vibe tags, and improved visual hierarchy.">
-"use client";
-
-import React from 'react';
-import { motion } from 'framer-motion';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { Bean, Users, Sparkles, Coffee, ArrowRight, ArrowDown } from 'lucide-react';
-
-const ValueCard = ({ icon: Icon, title, desc }: { icon: any, title: string, desc: string }) => (
-  <motion.div 
-    whileHover={{ y: -8 }}
-    className="bg-white p-5 md:p-8 rounded-[2rem] border border-coffee-blue/5 shadow-[0_4px_20px_-4px_rgba(22,74,99,0.05)] flex flex-col h-full group transition-all duration-500"
-  >
-    <div className="mb-5 p-3.5 bg-coffee-cream rounded-2xl w-fit text-coffee-petrol group-hover:bg-coffee-yellow group-hover:text-coffee-petrol transition-colors duration-500">
-      <Icon size={22} />
-    </div>
-    <h3 className="text-base md:text-lg font-bold text-coffee-petrol mb-2">{title}</h3>
-    <p className="text-coffee-charcoal/60 text-[11px] md:text-sm leading-relaxed font-light">{desc}</p>
-  </motion.div>
-);
-
-const DetailLabel = ({ text }: { text: string }) => (
-  <div className="flex items-center space-x-2 mb-4">
-    <div className="w-1.5 h-1.5 rounded-full bg-coffee-yellow" />
-    <span className="text-[10px] font-bold text-coffee-gold uppercase tracking-[0.2em]">{text}</span>
-  </div>
-);
-
-const VibeTag = ({ text }: { text: string }) => (
-  <div className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-coffee-cream/90 text-xs md:text-sm font-medium backdrop-blur-sm hover:bg-coffee-yellow hover:text-coffee-petrol hover:border-coffee-yellow transition-all duration-300 cursor-default">
-    {text}
-  </div>
-);
-
-const About = () => {
-  const scrollToStory = () => {
-    const element = document.getElementById('our-story');
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  return (
-    <main className="min-h-screen bg-coffee-cream selection:bg-coffee-yellow selection:text-coffee-petrol">
-      <Navbar />
-
-      {/* Redesigned Hero Section */}
-      <section className="relative h-screen flex items-center overflow-hidden bg-coffee-blue">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" 
-            alt="înCotro Interior" 
-            className="w-full h-full object-cover"
-          />
-          {/* Premium Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-coffee-petrol/90 via-coffee-petrol/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-coffee-petrol/40 via-transparent to-transparent" />
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-3xl"
-          >
-            <div className="flex items-center space-x-4 mb-8">
-              <motion.div 
-                initial={{ width: 0 }}
-                animate={{ width: 48 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
                 className="h-[1px] bg-coffee-yellow" 
               />
               <span className="text-coffee-yellow font-bold tracking-[0.4em] uppercase text-xs">The Essence of înCotro</span>
@@ -297,64 +227,40 @@ const About = () => {
         </div>
       </section>
 
-      {/* Redesigned Space & Atmosphere Section */}
-      <section className="py-32 bg-coffee-blue text-coffee-cream relative overflow-hidden">
-        {/* Decorative Background Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-coffee-yellow/5 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-coffee-soft/5 rounded-full blur-[100px]" />
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      {/* Space & Atmosphere */}
+      <section className="py-24 bg-coffee-blue text-coffee-cream">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="order-2 md:order-1"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1974&auto=format&fit=crop" 
+                alt="Atmosphere" 
+                className="rounded-[3rem] shadow-2xl"
+              />
+            </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="order-2 lg:order-1"
+              className="order-1 md:order-2"
             >
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="w-12 h-[1px] bg-coffee-yellow" />
-                <span className="text-coffee-yellow font-bold tracking-[0.3em] uppercase text-[10px]">Atmosphere</span>
-              </div>
-              
-              <h2 className="text-4xl md:text-6xl font-serif mb-8 leading-tight">The înCotro Vibe</h2>
-              
-              <p className="text-lg md:text-xl text-coffee-cream/70 leading-relaxed mb-10 font-light">
+              <h2 className="text-4xl font-serif mb-8">The înCotro Vibe</h2>
+              <p className="text-lg text-coffee-cream/70 leading-relaxed mb-8">
                 Our space is a carefully curated blend of deep blue walls, warm chandelier lighting, and fresh flowers. It's a place where the urban energy of Bucharest meets the calm focus of a specialty café.
               </p>
-
-              <div className="flex flex-wrap gap-3 mb-12">
-                <VibeTag text="Deep blue signature walls" />
-                <VibeTag text="Warm, inviting lighting" />
-                <VibeTag text="Fresh seasonal flowers" />
-                <VibeTag text="Artistic local touches" />
-              </div>
-
-              <div className="hidden lg:block">
-                <div className="w-24 h-[1px] bg-white/10" />
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="order-1 lg:order-2 relative"
-            >
-              <div className="relative">
-                {/* Decorative Accent Line */}
-                <div className="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-coffee-yellow/30 rounded-tl-[3rem] pointer-events-none" />
-                
-                <img 
-                  src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1974&auto=format&fit=crop" 
-                  alt="Atmosphere" 
-                  className="rounded-[3rem] shadow-2xl w-full aspect-[4/5] object-cover relative z-10"
-                />
-                
-                {/* Decorative Accent Line Bottom */}
-                <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-coffee-yellow/30 rounded-br-[3rem] pointer-events-none" />
-              </div>
+              <ul className="space-y-4">
+                {['Deep blue signature walls', 'Warm, inviting lighting', 'Fresh seasonal flowers', 'Artistic local touches'].map((item, i) => (
+                  <li key={i} className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-coffee-yellow rounded-full" />
+                    <span className="text-coffee-cream/80">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           </div>
         </div>
