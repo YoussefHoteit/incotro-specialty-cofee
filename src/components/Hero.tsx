@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-center">
-      {/* Background Image with Overlay */}
+    <section className="relative h-screen w-full overflow-hidden flex items-center bg-coffee-petrol">
+      {/* Background Image with Overlay - Optimized for performance */}
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2071&auto=format&fit=crop")',
+          backgroundImage: 'url("https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=60&w=1600&auto=format&fit=crop")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
