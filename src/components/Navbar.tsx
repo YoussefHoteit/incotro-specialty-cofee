@@ -26,10 +26,14 @@ const Navbar = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
+  // Force solid state on pages with light backgrounds (like Menu)
+  const isSolidPage = location.pathname === '/menu';
+  const showSolid = isScrolled || isSolidPage;
+
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        showSolid
           ? 'bg-coffee-cream text-coffee-petrol py-3 shadow-sm border-b border-coffee-blue/5' 
           : 'bg-transparent text-coffee-cream py-6'
       }`}
