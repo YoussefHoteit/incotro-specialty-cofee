@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Bean, Users, Sparkles, Coffee, ArrowRight } from 'lucide-react';
+import { Bean, Users, Sparkles, Coffee, ArrowRight, ArrowDown } from 'lucide-react';
 
 const ValueCard = ({ icon: Icon, title, desc }: { icon: any, title: string, desc: string }) => (
   <motion.div 
@@ -20,78 +20,174 @@ const ValueCard = ({ icon: Icon, title, desc }: { icon: any, title: string, desc
   </motion.div>
 );
 
+const DetailLabel = ({ text }: { text: string }) => (
+  <div className="flex items-center space-x-2 mb-4">
+    <div className="w-1.5 h-1.5 rounded-full bg-coffee-yellow" />
+    <span className="text-[10px] font-bold text-coffee-gold uppercase tracking-[0.2em]">{text}</span>
+  </div>
+);
+
 const About = () => {
+  const scrollToStory = () => {
+    const element = document.getElementById('our-story');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <main className="min-h-screen bg-coffee-cream selection:bg-coffee-yellow selection:text-coffee-petrol">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center overflow-hidden bg-coffee-blue">
+      {/* Redesigned Hero Section */}
+      <section className="relative h-screen flex items-center overflow-hidden bg-coffee-blue">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" 
-            alt="Interior" 
-            className="w-full h-full object-cover opacity-60"
+            alt="înCotro Interior" 
+            className="w-full h-full object-cover"
           />
-          {/* Bottom Fade Transition to Coffee Cream */}
-          <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-coffee-cream via-coffee-cream/20 to-transparent" />
+          {/* Premium Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-coffee-petrol/90 via-coffee-petrol/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-coffee-petrol/40 via-transparent to-transparent" />
         </div>
+
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-3xl"
           >
-            <div className="flex items-center space-x-4 mb-6">
-              <div className="w-12 h-[1px] bg-coffee-yellow" />
-              <span className="text-coffee-yellow font-bold tracking-widest uppercase text-sm">Our Story</span>
+            <div className="flex items-center space-x-4 mb-8">
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={{ width: 48 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="h-[1px] bg-coffee-yellow" 
+              />
+              <span className="text-coffee-yellow font-bold tracking-[0.4em] uppercase text-xs">The Essence of înCotro</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-serif text-coffee-cream mb-6">About înCotro</h1>
-            <p className="text-xl text-coffee-cream/80 leading-relaxed max-w-2xl">
-              A colorful specialty coffee space built around taste, craft, and community in the heart of Bucharest.
+            
+            <h1 className="text-5xl md:text-8xl font-serif text-coffee-cream mb-8 leading-[1.1]">
+              Crafting <span className="text-coffee-yellow italic">Presence</span> <br />
+              in Every Pour.
+            </h1>
+            
+            <p className="text-lg md:text-xl text-coffee-cream/80 leading-relaxed max-w-xl mb-12 font-light">
+              A colorful specialty coffee space built around taste, craft, and community in the heart of Bucharest. We don't just serve coffee; we curate moments.
             </p>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              <button 
+                onClick={scrollToStory}
+                className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
+              >
+                Discover Our Story
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+              </button>
+            </div>
           </motion.div>
         </div>
+
+        {/* Scroll Cue */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer"
+          onClick={scrollToStory}
+        >
+          <span className="text-[10px] text-coffee-cream/40 uppercase tracking-[0.3em] mb-4">Scroll to explore</span>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="text-coffee-yellow"
+          >
+            <ArrowDown size={20} strokeWidth={1.5} />
+          </motion.div>
+        </motion.div>
       </section>
 
-      {/* Story Section */}
-      <section className="py-24 bg-coffee-cream">
+      {/* Redesigned Story Section - Editorial Style */}
+      <section id="our-story" className="py-32 bg-coffee-cream overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-12 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="lg:col-span-6 order-2 lg:order-1"
             >
-              <h2 className="text-4xl font-serif text-coffee-petrol mb-8">Where Art Meets Espresso</h2>
-              <div className="space-y-6 text-lg text-coffee-charcoal/70 leading-relaxed">
-                <p>
+              <DetailLabel text="Specialty coffee rituals" />
+              <h2 className="text-4xl md:text-6xl font-serif text-coffee-petrol mb-10 leading-tight">
+                Where Art Meets <br />
+                <span className="text-coffee-gold italic">Espresso</span>
+              </h2>
+              
+              <div className="space-y-8 text-lg text-coffee-charcoal/70 leading-relaxed font-light">
+                <p className="first-letter:text-5xl first-letter:font-serif first-letter:text-coffee-petrol first-letter:mr-3 first-letter:float-left">
                   înCotro Specialty Coffee is a bright and welcoming corner in Bucharest where carefully prepared coffee meets a playful, artistic atmosphere.
                 </p>
                 <p>
-                  From the yellow details outside to the deep blue walls inside, every element is designed to make people feel present, inspired, and at home. We believe that a great cup of coffee is the starting point for meaningful conversations and creative sparks.
+                  From the <span className="text-coffee-petrol font-medium">yellow details</span> outside to the <span className="text-coffee-petrol font-medium">deep blue walls</span> inside, every element is designed to make people feel present, inspired, and at home. We believe that a great cup of coffee is the starting point for meaningful conversations and creative sparks.
                 </p>
                 <p>
                   Our journey began with a simple vision: to create a sanctuary for specialty coffee lovers that doesn't feel intimidating, but rather like a warm extension of your own living room.
                 </p>
               </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-coffee-yellow/20 rounded-full blur-3xl" />
-              <img 
-                src="https://images.unsplash.com/photo-1501339819358-ee5969a2f5ac?q=80&w=2069&auto=format&fit=crop" 
-                alt="Exterior" 
-                className="rounded-[3rem] shadow-2xl relative z-10"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-coffee-yellow p-8 rounded-3xl z-20 shadow-xl hidden md:block">
-                <p className="text-coffee-petrol font-bold text-xl italic">"A Bucharest soul in every pour."</p>
+
+              <div className="mt-12 flex items-center space-x-8">
+                <div>
+                  <span className="block text-3xl font-serif text-coffee-petrol">2023</span>
+                  <span className="text-[10px] uppercase tracking-widest text-coffee-gold font-bold">Established</span>
+                </div>
+                <div className="w-[1px] h-10 bg-coffee-blue/10" />
+                <div>
+                  <span className="block text-3xl font-serif text-coffee-petrol">100%</span>
+                  <span className="text-[10px] uppercase tracking-widest text-coffee-gold font-bold">Specialty Grade</span>
+                </div>
               </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="lg:col-span-6 order-1 lg:order-2 relative"
+            >
+              {/* Visual Collage Block */}
+              <div className="relative z-10">
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-coffee-yellow/10 rounded-full blur-3xl" />
+                <img 
+                  src="/gallery/entrance-view.jpg" 
+                  alt="înCotro Entrance" 
+                  className="rounded-[3rem] shadow-2xl w-full aspect-[4/5] object-cover"
+                />
+                
+                {/* Floating Detail Labels */}
+                <motion.div 
+                  initial={{ x: 20, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl z-20 max-w-[240px] border border-coffee-blue/5"
+                >
+                  <DetailLabel text="Deep blue walls" />
+                  <p className="text-coffee-petrol font-serif text-lg italic leading-snug">
+                    "A Bucharest soul in every single pour."
+                  </p>
+                </motion.div>
+
+                <motion.div 
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.7 }}
+                  className="absolute top-12 -right-8 bg-coffee-yellow p-4 rounded-2xl shadow-lg z-20 hidden md:block"
+                >
+                  <DetailLabel text="Warm yellow details" />
+                </motion.div>
+              </div>
+
+              {/* Decorative Background Element */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-coffee-blue/5 rounded-full pointer-events-none" />
             </motion.div>
           </div>
         </div>
