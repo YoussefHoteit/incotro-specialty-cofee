@@ -17,7 +17,8 @@ const Hero = () => {
           backgroundPosition: 'center',
         }}
       >
-        <div className="absolute inset-0 bg-coffee-petrol/60 backdrop-blur-[2px]" />
+        {/* Removed backdrop-blur to prevent rendering issues with the background image */}
+        <div className="absolute inset-0 bg-coffee-petrol/60" />
         
         {/* Bottom Fade Transition */}
         <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-coffee-cream via-coffee-cream/40 to-transparent" />
@@ -46,14 +47,14 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link 
                 to="/menu" 
-                className="bg-coffee-yellow/80 backdrop-blur-md border border-white/20 text-coffee-petrol px-6 py-3 rounded-full font-bold text-base hover:bg-coffee-yellow transition-all flex items-center justify-center group"
+                className="bg-coffee-yellow/90 border border-white/20 text-coffee-petrol px-6 py-3 rounded-full font-bold text-base hover:bg-coffee-yellow transition-all flex items-center justify-center group"
               >
                 View Menu
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
               </Link>
               <Link 
                 to="/contact" 
-                className="bg-white/10 backdrop-blur-md border border-white/30 text-coffee-cream px-6 py-3 rounded-full font-bold text-base hover:bg-white/20 transition-all text-center"
+                className="bg-white/10 border border-white/30 text-coffee-cream px-6 py-3 rounded-full font-bold text-base hover:bg-white/20 transition-all text-center"
               >
                 Visit Us
               </Link>
