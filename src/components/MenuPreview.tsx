@@ -13,11 +13,12 @@ const menuItems = [
   { name: "Banana Bread", price: "14", desc: "Toasted with espresso butter." }
 ];
 
-const MenuPreviewItem = ({ name, price, desc }: { name: string, price: string, desc: string }) => (
+const MenuPreviewItem = ({ name, price, desc, index }: { name: string, price: string, desc: string, index: number }) => (
   <motion.div 
-    initial={{ opacity: 0, y: 10 }}
+    initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.5, delay: index * 0.1 }}
     className="group mb-10"
   >
     <div className="flex items-baseline justify-between mb-2">
@@ -37,7 +38,12 @@ const MenuPreview = () => {
   return (
     <section id="menu" className="py-24 bg-coffee-cream">
       <div className="container mx-auto px-6 max-w-5xl">
-        <div className="flex items-center justify-between mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex items-center justify-between mb-16"
+        >
           <div className="flex flex-col">
             <span className="text-coffee-yellow font-bold text-xs uppercase tracking-[0.3em] mb-2">Our Favorites</span>
             <h2 className="text-4xl md:text-5xl font-serif text-coffee-petrol">Crafted with Precision</h2>
@@ -46,15 +52,20 @@ const MenuPreview = () => {
           <span className="hidden md:block text-sm font-medium text-coffee-gold tracking-widest">
             01
           </span>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-x-16 mb-16">
           {menuItems.map((item, index) => (
-            <MenuPreviewItem key={index} {...item} />
+            <MenuPreviewItem key={index} index={index} {...item} />
           ))}
         </div>
 
-        <div className="text-center">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
           <Link to="/menu" className="inline-flex items-center space-x-4 group">
             <span className="text-coffee-petrol font-bold text-lg border-b-2 border-coffee-yellow pb-1 group-hover:border-coffee-petrol transition-colors">
               Explore Full Menu
@@ -63,7 +74,7 @@ const MenuPreview = () => {
               <span className="text-xl">→</span>
             </div>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
