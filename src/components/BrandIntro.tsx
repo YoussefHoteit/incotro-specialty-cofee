@@ -56,9 +56,9 @@ const BrandIntro = () => {
 
         {/* The Journey Layout */}
         <div className="relative max-w-5xl mx-auto">
-          {/* Vertical Connecting Line */}
-          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-coffee-yellow via-coffee-blue/20 to-transparent hidden md:block" />
-          <div className="absolute left-6 top-0 bottom-0 w-[1px] bg-gradient-to-b from-coffee-yellow via-coffee-blue/20 to-transparent md:hidden" />
+          {/* Vertical Connecting Line - Updated gradient to stay yellow longer */}
+          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-coffee-yellow via-coffee-yellow to-transparent hidden md:block" />
+          <div className="absolute left-6 top-0 bottom-0 w-[1px] bg-gradient-to-b from-coffee-yellow via-coffee-yellow to-transparent md:hidden" />
 
           <div className="space-y-24 md:space-y-40">
             {features.map((feature, index) => (
