@@ -227,40 +227,69 @@ const About = () => {
         </div>
       </section>
 
-      {/* Space & Atmosphere */}
-      <section className="py-24 bg-coffee-blue text-coffee-cream">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="order-2 md:order-1"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1974&auto=format&fit=crop" 
-                alt="Atmosphere" 
-                className="rounded-[3rem] shadow-2xl"
-              />
-            </motion.div>
-            <motion.div
+      {/* Redesigned înCotro Vibe Section - Editorial Style */}
+      <section className="py-32 bg-coffee-blue text-coffee-cream relative overflow-hidden">
+        {/* Subtle Background Glow */}
+        <div className="absolute top-1/2 right-0 w-96 h-96 bg-coffee-yellow/5 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            <motion.div 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="order-1 md:order-2"
+              className="order-1"
             >
-              <h2 className="text-4xl font-serif mb-8">The înCotro Vibe</h2>
-              <p className="text-lg text-coffee-cream/70 leading-relaxed mb-8">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-8 h-[1px] bg-coffee-yellow" />
+                <span className="text-coffee-yellow font-bold tracking-[0.3em] uppercase text-[10px]">Atmosphere</span>
+              </div>
+              
+              <h2 className="text-4xl md:text-6xl font-serif mb-8 leading-tight">The înCotro Vibe</h2>
+              
+              <p className="text-lg md:text-xl text-coffee-cream/70 leading-relaxed mb-10 font-light">
                 Our space is a carefully curated blend of deep blue walls, warm chandelier lighting, and fresh flowers. It's a place where the urban energy of Bucharest meets the calm focus of a specialty café.
               </p>
-              <ul className="space-y-4">
-                {['Deep blue signature walls', 'Warm, inviting lighting', 'Fresh seasonal flowers', 'Artistic local touches'].map((item, i) => (
-                  <li key={i} className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-coffee-yellow rounded-full" />
-                    <span className="text-coffee-cream/80">{item}</span>
-                  </li>
+              
+              <div className="flex flex-wrap gap-3 mb-12 lg:mb-0">
+                {[
+                  'Deep blue signature walls',
+                  'Warm, inviting lighting',
+                  'Fresh seasonal flowers',
+                  'Artistic local touches'
+                ].map((tag, i) => (
+                  <motion.span 
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="px-4 py-2 rounded-full border border-coffee-yellow/30 text-coffee-yellow text-[10px] md:text-xs font-bold uppercase tracking-widest bg-coffee-yellow/5 whitespace-nowrap"
+                  >
+                    {tag}
+                  </motion.span>
                 ))}
-              </ul>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="order-2 relative"
+            >
+              <div className="relative">
+                {/* Decorative Frame Detail */}
+                <div className="absolute -inset-4 border border-coffee-yellow/10 rounded-[3.5rem] pointer-events-none" />
+                
+                <img 
+                  src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1974&auto=format&fit=crop" 
+                  alt="Atmosphere" 
+                  className="rounded-[3rem] shadow-2xl w-full object-cover aspect-[4/3] lg:aspect-square"
+                />
+                
+                {/* Subtle Accent Glow */}
+                <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-coffee-yellow/10 rounded-full blur-2xl pointer-events-none" />
+              </div>
             </motion.div>
           </div>
         </div>
