@@ -3,6 +3,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+const communityImages = [
+  "/gallery/community-outdoor.jpg",
+  "/gallery/street-vibe.jpg",
+  "/gallery/dog-coffee.jpg",
+  "/gallery/child-dog.jpg",
+  "/gallery/writing-window.jpg",
+  "/gallery/child-coffee.jpg",
+  "/gallery/coffee-outdoor.jpg",
+  "/gallery/entrance-view.jpg"
+];
+
 const Community = () => {
   return (
     <section className="py-24 bg-white overflow-hidden">
@@ -38,9 +49,9 @@ const Community = () => {
             <div className="absolute -top-4 -left-4 w-24 h-24 bg-coffee-yellow/20 rounded-full blur-2xl" />
             <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-coffee-blue/10 rounded-full blur-2xl" />
             <img 
-              src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=2070&auto=format&fit=crop" 
-              alt="Community" 
-              className="rounded-[3rem] relative z-10 shadow-2xl"
+              src="/gallery/community-outdoor.jpg" 
+              alt="Community at înCotro" 
+              className="rounded-[3rem] relative z-10 shadow-2xl w-full aspect-[4/3] object-cover"
             />
           </motion.div>
         </div>
@@ -50,24 +61,24 @@ const Community = () => {
       <div className="flex space-x-4 overflow-hidden py-4">
         <motion.div 
           animate={{ x: [0, -1000] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
           className="flex space-x-4 whitespace-nowrap"
         >
-          {[1,2,3,4,5,6].map(i => (
+          {communityImages.map((src, i) => (
             <img 
               key={i}
-              src={`https://images.unsplash.com/photo-${1500000000000 + i * 100000}?q=80&w=400&auto=format&fit=crop`}
-              className="w-64 h-48 object-cover rounded-2xl"
-              alt="Gallery"
+              src={src}
+              className="w-64 h-48 object-cover rounded-2xl shadow-sm"
+              alt={`Gallery moment ${i}`}
             />
           ))}
           {/* Duplicate for seamless loop */}
-          {[1,2,3,4,5,6].map(i => (
+          {communityImages.map((src, i) => (
             <img 
               key={`dup-${i}`}
-              src={`https://images.unsplash.com/photo-${1500000000000 + i * 100000}?q=80&w=400&auto=format&fit=crop`}
-              className="w-64 h-48 object-cover rounded-2xl"
-              alt="Gallery"
+              src={src}
+              className="w-64 h-48 object-cover rounded-2xl shadow-sm"
+              alt={`Gallery moment ${i} duplicate`}
             />
           ))}
         </motion.div>
