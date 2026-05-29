@@ -1,47 +1,30 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Coffee, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const imageUrl = "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2071&auto=format&fit=crop";
-
-  useEffect(() => {
-    const img = new Image();
-    img.src = imageUrl;
-    img.onload = () => setIsLoaded(true);
-  }, []);
-
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-center bg-coffee-cream">
+    <section className="relative h-screen w-full overflow-hidden flex items-center">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <AnimatePresence>
-          {isLoaded && (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `url("${imageUrl}")`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            >
-              <div className="absolute inset-0 bg-coffee-petrol/60" />
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: 'url("https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2071&auto=format&fit=crop")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Removed backdrop-blur to prevent rendering issues with the background image */}
+        <div className="absolute inset-0 bg-coffee-petrol/60" />
         
-        {/* Bottom Fade Transition - Always visible to blend with the page */}
-        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-coffee-cream via-coffee-cream/40 to-transparent z-10" />
+        {/* Bottom Fade Transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-coffee-cream via-coffee-cream/40 to-transparent" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-20">
+      <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -84,7 +67,7 @@ const Hero = () => {
       <motion.div 
         animate={{ y: [0, -15, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-10 right-10 hidden lg:block z-20"
+        className="absolute bottom-10 right-10 hidden lg:block"
       >
         <div className="relative">
           <div className="absolute -inset-4 bg-coffee-yellow/20 rounded-full blur-xl animate-pulse" />
@@ -93,7 +76,7 @@ const Hero = () => {
       </motion.div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-coffee-cream/50 z-20">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-coffee-cream/50">
         <span className="text-[10px] uppercase tracking-widest mb-2">Scroll</span>
         <div className="w-[1px] h-12 bg-gradient-to-b from-coffee-yellow to-transparent" />
       </div>
