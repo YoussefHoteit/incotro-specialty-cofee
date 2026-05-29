@@ -25,12 +25,7 @@ const SignatureExperience = () => {
   return (
     <section id="gallery" className="py-24 bg-coffee-blue text-coffee-cream overflow-hidden">
       <div className="container mx-auto px-6">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
-        >
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">The înCotro Experience</h2>
             <p className="text-coffee-cream/70 text-lg">
@@ -38,24 +33,20 @@ const SignatureExperience = () => {
             </p>
           </div>
           <div className="hidden md:block">
-            <motion.div 
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 2, ease: "linear" }}
-              className="w-24 h-24 border-2 border-coffee-yellow rounded-full flex items-center justify-center text-coffee-yellow font-bold text-xs uppercase tracking-widest text-center p-4"
-            >
+            <div className="w-24 h-24 border-2 border-coffee-yellow rounded-full flex items-center justify-center text-coffee-yellow font-bold text-xs uppercase tracking-widest text-center p-4">
               Est. 2023 Bucharest
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
           {images.map((img, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, delay: index * 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
               className={`group relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] aspect-[4/5] ${
                 index === 2 ? 'col-span-2 md:col-span-1 max-w-[50%] mx-auto md:max-w-none' : ''
               }`}
@@ -70,6 +61,7 @@ const SignatureExperience = () => {
                 <h3 className="text-lg md:text-2xl font-bold text-coffee-yellow mb-1 md:mb-2">{img.title}</h3>
                 <p className="text-[10px] md:text-sm text-coffee-cream/80 uppercase tracking-widest">{img.desc}</p>
               </div>
+              {/* Tulip Red Accent Detail */}
               <div className="absolute top-6 right-6 w-2 h-2 bg-coffee-red rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
           ))}
