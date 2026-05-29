@@ -8,15 +8,14 @@ import { Bean, Users, Sparkles, Coffee, ArrowRight, ArrowDown } from 'lucide-rea
 
 const ValueCard = ({ icon: Icon, title, desc }: { icon: any, title: string, desc: string }) => (
   <motion.div 
-    whileHover={{ y: -10 }}
-    className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-coffee-blue/5 relative group overflow-hidden"
+    whileHover={{ y: -8 }}
+    className="bg-white p-5 md:p-8 rounded-[2rem] border border-coffee-blue/5 shadow-[0_4px_20px_-4px_rgba(22,74,99,0.05)] flex flex-col h-full group transition-all duration-500"
   >
-    <div className="absolute top-0 left-0 w-full h-1 bg-coffee-yellow transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-    <div className="mb-6 p-4 bg-coffee-blue/5 rounded-2xl w-fit text-coffee-petrol group-hover:bg-coffee-yellow group-hover:text-coffee-petrol transition-colors duration-300">
-      <Icon size={28} />
+    <div className="mb-5 p-3.5 bg-coffee-cream rounded-2xl w-fit text-coffee-petrol group-hover:bg-coffee-yellow group-hover:text-coffee-petrol transition-colors duration-500">
+      <Icon size={22} />
     </div>
-    <h3 className="text-xl font-bold text-coffee-petrol mb-3">{title}</h3>
-    <p className="text-coffee-charcoal/60 text-sm leading-relaxed">{desc}</p>
+    <h3 className="text-base md:text-lg font-bold text-coffee-petrol mb-2">{title}</h3>
+    <p className="text-coffee-charcoal/60 text-[11px] md:text-sm leading-relaxed font-light">{desc}</p>
   </motion.div>
 );
 
@@ -193,14 +192,17 @@ const About = () => {
         </div>
       </section>
 
-      {/* Values Section */}
+      {/* Redesigned Values Section - Compact Grid */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-serif text-coffee-petrol mb-4">What We Stand For</h2>
-            <div className="w-24 h-1 bg-coffee-yellow mx-auto" />
+            <h2 className="text-3xl md:text-4xl font-serif text-coffee-petrol mb-3">What We Stand For</h2>
+            <div className="w-12 h-1 bg-coffee-yellow mx-auto mb-6" />
+            <p className="text-coffee-charcoal/60 text-sm md:text-base max-w-md mx-auto font-light">
+              The details that shape every cup, every corner, and every visit.
+            </p>
           </div>
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             <ValueCard 
               icon={Bean} 
               title="Craftsmanship" 
