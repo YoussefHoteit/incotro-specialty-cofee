@@ -46,7 +46,7 @@ const BrandIntro = () => {
             <span className="text-coffee-gold font-bold text-xs uppercase tracking-[0.4em] mb-6 block">The Philosophy</span>
             <h2 className="text-4xl md:text-7xl font-serif text-coffee-petrol mb-8 leading-[1.1]">
               More than just a cup. <br />
-              <span className="text-coffee-gold italic">It's a destination.</span>
+              <span className="text-coffee-yellow italic">It's a destination.</span>
             </h2>
             <p className="text-lg md:text-xl text-coffee-charcoal/60 leading-relaxed max-w-2xl">
               At înCotro, we believe every coffee tells a story. Our identity reflects the vibrant energy of Bucharest paired with the calm focus of a master craftsman.
