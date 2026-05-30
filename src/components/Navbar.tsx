@@ -26,15 +26,15 @@ const Navbar = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
-  // Force solid state on pages with light backgrounds (like Menu)
+  // Force solid state on pages with light backgrounds or when mobile menu is open
   const isSolidPage = location.pathname === '/menu';
-  const showGlassy = isScrolled || isSolidPage;
+  const showGlassy = isScrolled || isSolidPage || isMobileMenuOpen;
 
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         showGlassy
-          ? 'bg-coffee-cream/70 backdrop-blur-md text-coffee-petrol py-3 shadow-sm border-b border-coffee-blue/10' 
+          ? 'bg-white/90 backdrop-blur-md text-coffee-petrol py-3 shadow-sm border-b border-coffee-blue/10' 
           : 'bg-transparent text-coffee-cream py-6'
       }`}
     >
@@ -76,10 +76,10 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-coffee-cream/95 backdrop-blur-xl text-coffee-petrol p-6 md:hidden shadow-xl border-t border-coffee-blue/5"
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl text-coffee-petrol p-6 md:hidden shadow-xl border-t border-coffee-blue/5"
           >
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
