@@ -3,13 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
@@ -35,6 +36,16 @@ const Navbar = () => {
     setLanguage(language === 'ro' ? 'en' : 'ro');
   };
 
+  const handleLogoOrHomeClick = (e: React.MouseEvent, href: string) => {
+    if (href === '/' && location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setIsMobileMenuOpen(false);
+    } else if (href === '/') {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -44,7 +55,11 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="flex flex-col">
+        <Link 
+          to="/" 
+          className="flex flex-col"
+          onClick={(e) => handleLogoOrHomeClick(e, '/')}
+        >
           <span className="text-2xl font-bold tracking-tighter leading-none">înCotro</span>
           <span className="text-[10px] uppercase tracking-[0.2em] font-medium opacity-80">{t.footer.specialty}</span>
         </Link>
@@ -56,6 +71,7 @@ const Navbar = () => {
               <Link 
                 key={link.name} 
                 to={link.href}
+                onClick={(e) => handleLogoOrHomeClick(e, link.href)}
                 className={`text-sm font-medium transition-all relative group ${
                   location.pathname === link.href ? 'text-coffee-gold' : ''
                 }`}
@@ -108,7 +124,10 @@ const Navbar = () => {
                   key={link.name} 
                   to={link.href}
                   className="text-lg font-medium border-b border-coffee-blue/5 pb-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    handleLogoOrHomeClick(e, link.href);
+                    if (link.href !== '/') setIsMobileMenuOpen(false);
+                  }}
                 >
                   {link.name}
                 </Link>
