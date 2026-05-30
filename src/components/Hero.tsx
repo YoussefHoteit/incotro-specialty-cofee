@@ -1,13 +1,21 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
 const Hero = () => {
   const { t } = useLanguage();
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   
   const scrollToAbout = () => {
     const element = document.getElementById('about');
@@ -35,9 +43,10 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-center bg-coffee-blue">
-      {/* Background with Opening Zoom Animation */}
+    <section ref={containerRef} className="relative h-screen w-full overflow-hidden flex items-center bg-coffee-blue">
+      {/* Background with Parallax and Opening Animation */}
       <motion.div 
+        style={{ y }}
         initial={{ scale: 1.1, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 2, ease: "easeOut" }}
@@ -57,6 +66,7 @@ const Hero = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
+          style={{ opacity }}
           className="max-w-5xl"
         >
           <motion.div variants={itemVariants} className="flex items-center space-x-4 mb-8">

@@ -28,7 +28,13 @@ const SignatureExperience = () => {
   return (
     <section id="gallery" className="py-24 bg-coffee-blue text-coffee-cream overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
+        >
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">{t.signature.experience}</h2>
             <p className="text-coffee-cream/70 text-lg">
@@ -40,16 +46,16 @@ const SignatureExperience = () => {
               {t.signature.est}
             </div>
           </div>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
           {images.map((img, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: "-50px" }}
+              transition={{ delay: index * 0.2, duration: 0.8, ease: "easeOut" }}
               className={`group relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] aspect-[4/5] ${
                 index === 2 ? 'col-span-2 md:col-span-1 max-w-[50%] mx-auto md:max-w-none' : ''
               }`}

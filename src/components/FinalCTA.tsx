@@ -11,18 +11,33 @@ const FinalCTA = () => {
   return (
     <section id="contact" className="py-24 bg-coffee-yellow">
       <div className="container mx-auto px-6">
-        <div className="bg-coffee-petrol rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="bg-coffee-petrol rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden"
+        >
           <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <div className="absolute top-10 left-10 w-40 h-40 border-2 border-coffee-yellow rounded-full" />
-            <div className="absolute bottom-10 right-10 w-60 h-60 border-2 border-coffee-yellow rounded-full" />
+            <motion.div 
+              animate={{ 
+                scale: [1, 1.1, 1],
+                rotate: [0, 5, 0]
+              }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              className="absolute top-10 left-10 w-40 h-40 border-2 border-coffee-yellow rounded-full" 
+            />
+            <motion.div 
+              animate={{ 
+                scale: [1, 1.2, 1],
+                rotate: [0, -5, 0]
+              }}
+              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              className="absolute bottom-10 right-10 w-60 h-60 border-2 border-coffee-yellow rounded-full" 
+            />
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative z-10"
-          >
+          <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-bold text-coffee-cream mb-8">
               {t.finalCTA.title} <br />
               <span className="text-coffee-yellow">{t.finalCTA.titleYellow}</span>
@@ -34,8 +49,8 @@ const FinalCTA = () => {
               <MapPin className="mr-2 group-hover:animate-bounce" size={24} />
               {t.finalCTA.button}
             </button>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
