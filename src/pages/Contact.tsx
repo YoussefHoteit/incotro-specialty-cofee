@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { MapPin, Phone, Mail, Clock, Send, ExternalLink, ArrowDown, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -24,72 +24,43 @@ const ContactCard = ({ icon: Icon, title, content }: { icon: any, title: string,
 const Contact = () => {
   const { t } = useLanguage();
 
-  const scrollToContactInfo = () => {
-    const element = document.getElementById('contact-info');
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <main className="min-h-screen bg-coffee-cream selection:bg-coffee-yellow selection:text-coffee-petrol">
       <Navbar />
 
-      <section className="relative h-screen flex items-center overflow-hidden bg-coffee-blue">
-        <div className="absolute inset-0 z-0">
+      <section className="relative h-[60vh] flex items-center overflow-hidden bg-coffee-blue">
+        <div className="absolute inset-0 z-0 opacity-40">
           <img 
             src="https://images.unsplash.com/photo-1501339819358-ee5969a2f5ac?q=80&w=2069&auto=format&fit=crop" 
             alt="Café Exterior" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-coffee-petrol/90 via-coffee-petrol/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-coffee-petrol/40 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-coffee-petrol to-transparent" />
         </div>
         
+        <div className="absolute top-20 right-[-5%] w-64 h-64 bg-coffee-yellow/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 left-[-5%] w-48 h-48 bg-coffee-yellow/10 rounded-full blur-3xl" />
+
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <div className="flex items-center space-x-4 mb-8">
-              <motion.div 
-                initial={{ width: 0 }}
-                animate={{ width: 48 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="h-[1px] bg-coffee-yellow" 
-              />
-              <span className="text-coffee-yellow font-bold tracking-[0.4em] uppercase text-xs">{t.contact.getInTouch}</span>
+            <div className="flex items-center space-x-4 mb-6">
+              <div className="w-12 h-[1px] bg-coffee-yellow" />
+              <span className="text-coffee-yellow font-bold tracking-widest uppercase text-sm">{t.contact.getInTouch}</span>
             </div>
-            
-            <h1 className="text-5xl md:text-8xl font-serif text-coffee-cream mb-8 leading-[1.1]">
-              {t.contact.heroTitle}
-            </h1>
-            
-            <p className="text-lg md:text-xl text-coffee-cream/80 leading-relaxed max-w-xl mb-12 font-light">
+            <h1 className="text-5xl md:text-7xl font-serif text-coffee-cream mb-6">{t.contact.heroTitle}</h1>
+            <p className="text-xl text-coffee-cream/80 leading-relaxed max-w-2xl">
               {t.contact.heroDesc}
             </p>
           </motion.div>
         </div>
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer"
-          onClick={scrollToContactInfo}
-        >
-          <span className="text-[10px] text-coffee-cream/40 uppercase tracking-[0.3em] mb-4">{t.hero.scroll}</span>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="text-coffee-yellow"
-          >
-            <ArrowDown size={20} strokeWidth={1.5} />
-          </motion.div>
-        </motion.div>
       </section>
 
-      <section id="contact-info" className="py-24 bg-coffee-cream">
+      <section className="py-24 bg-coffee-cream">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             <ContactCard 
