@@ -14,9 +14,35 @@ const Hero = () => {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-center bg-coffee-blue">
-      <div className="absolute inset-0 z-0">
+      {/* Background with Opening Zoom Animation */}
+      <motion.div 
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+        className="absolute inset-0 z-0"
+      >
         <img 
           src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2071&auto=format&fit=crop" 
           alt="înCotro Atmosphere" 
@@ -24,35 +50,35 @@ const Hero = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-coffee-petrol/90 via-coffee-petrol/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-coffee-petrol/40 via-transparent to-transparent" />
-      </div>
+      </motion.div>
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
           className="max-w-4xl"
         >
-          <div className="flex items-center space-x-4 mb-8">
+          <motion.div variants={itemVariants} className="flex items-center space-x-4 mb-8">
             <motion.div 
               initial={{ width: 0 }}
               animate={{ width: 48 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
               className="h-[1px] bg-coffee-yellow" 
             />
             <span className="text-coffee-yellow font-bold tracking-[0.4em] uppercase text-xs">{t.hero.ritual}</span>
-          </div>
+          </motion.div>
           
-          <h1 className="text-5xl md:text-8xl font-serif text-coffee-cream mb-8 leading-[1.1]">
+          <motion.h1 variants={itemVariants} className="text-5xl md:text-8xl font-serif text-coffee-cream mb-8 leading-[1.1]">
             {t.hero.title} <br />
             <span className="text-coffee-yellow italic">{t.hero.titleItalic}</span> {t.hero.titleEnd}
-          </h1>
+          </motion.h1>
           
-          <p className="text-lg md:text-xl text-coffee-cream/80 leading-relaxed max-w-xl mb-12 font-light">
+          <motion.p variants={itemVariants} className="text-lg md:text-xl text-coffee-cream/80 leading-relaxed max-w-xl mb-12 font-light">
             {t.hero.desc}
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col items-start gap-6">
+          <motion.div variants={itemVariants} className="flex flex-col items-start gap-6">
             <Link 
               to="/menu" 
               className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
@@ -66,14 +92,14 @@ const Hero = () => {
             >
               {t.hero.visitUs}
             </Link>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
 
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
+        transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer"
         onClick={scrollToAbout}
       >
