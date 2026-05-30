@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 const communityImages = [
   "/gallery/community-outdoor.jpg",
@@ -15,6 +16,8 @@ const communityImages = [
 ];
 
 const Community = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-6 mb-16">
@@ -24,9 +27,9 @@ const Community = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-coffee-petrol mb-6">A Place for Bucharest's Soul</h2>
+            <h2 className="text-4xl font-bold text-coffee-petrol mb-6">{t.community.title}</h2>
             <p className="text-lg text-coffee-charcoal/70 leading-relaxed mb-8">
-              înCotro isn't just about the coffee—it's about the people. Whether you're here to finish your next big project, catch up with an old friend, or simply enjoy a moment of solitude with a book, you're part of our community.
+              {t.community.desc}
             </p>
             <div className="flex items-center space-x-4">
               <div className="flex -space-x-3">
@@ -36,7 +39,7 @@ const Community = () => {
                   </div>
                 ))}
               </div>
-              <span className="text-sm font-medium text-coffee-petrol/60">Joined by 500+ locals</span>
+              <span className="text-sm font-medium text-coffee-petrol/60">{t.community.joined}</span>
             </div>
           </motion.div>
           
@@ -57,7 +60,6 @@ const Community = () => {
         </div>
       </div>
 
-      {/* Scrolling Image Strip */}
       <div className="flex space-x-4 overflow-hidden py-4">
         <motion.div 
           animate={{ x: [0, -1000] }}
@@ -72,7 +74,6 @@ const Community = () => {
               alt={`Gallery moment ${i}`}
             />
           ))}
-          {/* Duplicate for seamless loop */}
           {communityImages.map((src, i) => (
             <img 
               key={`dup-${i}`}

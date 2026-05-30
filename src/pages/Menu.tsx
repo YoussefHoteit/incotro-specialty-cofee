@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useLanguage } from '../context/LanguageContext';
 
 interface MenuItemProps {
   name: string;
@@ -57,46 +58,48 @@ const MenuCategory = ({ title, number, items }: MenuCategoryProps) => (
 );
 
 const Menu = () => {
+  const { t } = useLanguage();
+
   const menuData = [
     {
-      title: "Espresso Bar",
+      title: t.menu.espressoBar,
       number: "01",
       items: [
-        { name: "Espresso", price: "10 RON", description: "Double shot of our seasonal single origin." },
-        { name: "Long Black", price: "12 RON", description: "Espresso over hot water." },
-        { name: "Cortado", price: "13 RON", description: "Equal parts espresso and steamed milk." },
-        { name: "Flat White", price: "15 RON", description: "Double shot with silky micro-foam." },
-        { name: "Cappuccino", price: "15 RON", description: "Classic balance of espresso, milk, and foam." },
-        { name: "Latte", price: "17 RON", description: "Double shot with plenty of steamed milk." },
+        { name: "Espresso", price: "10 RON", description: t.menu.espressoDesc },
+        { name: "Long Black", price: "12 RON", description: t.menu.longBlackDesc },
+        { name: "Cortado", price: "13 RON", description: t.menu.cortadoDesc },
+        { name: "Flat White", price: "15 RON", description: t.menu.flatWhiteDesc },
+        { name: "Cappuccino", price: "15 RON", description: t.menu.cappuccinoDesc },
+        { name: "Latte", price: "17 RON", description: t.menu.latteDesc },
       ]
     },
     {
-      title: "Filter Coffee",
+      title: t.menu.filterCoffee,
       number: "02",
       items: [
-        { name: "V60 Pour Over", price: "18 RON", description: "Hand-brewed seasonal selection." },
-        { name: "Batch Brew", price: "12 RON", description: "Quick, clean, and consistently delicious." },
-        { name: "Cold Brew", price: "16 RON", description: "Steeped for 18 hours for a smooth finish." },
+        { name: "V60 Pour Over", price: "18 RON", description: t.menu.v60Desc },
+        { name: "Batch Brew", price: "12 RON", description: t.menu.batchDesc },
+        { name: "Cold Brew", price: "16 RON", description: t.menu.coldBrewDesc },
       ]
     },
     {
-      title: "Non-Coffee & Seasonal",
+      title: t.menu.nonCoffee,
       number: "03",
       items: [
-        { name: "Hot Chocolate", price: "16 RON", description: "Single-origin 70% dark chocolate." },
-        { name: "Matcha Latte", price: "18 RON", description: "Ceremonial grade Japanese matcha." },
-        { name: "Loose Leaf Tea", price: "14 RON", description: "Selection of black, green, and herbal teas." },
-        { name: "Fresh Lemonade", price: "15 RON", description: "With seasonal fruit infusions." },
+        { name: "Hot Chocolate", price: "16 RON", description: t.menu.hotChocDesc },
+        { name: "Matcha Latte", price: "18 RON", description: t.menu.matchaDesc },
+        { name: "Loose Leaf Tea", price: "14 RON", description: t.menu.teaDesc },
+        { name: "Fresh Lemonade", price: "15 RON", description: t.menu.lemonadeDesc },
       ]
     },
     {
-      title: "Pastries & Bites",
+      title: t.menu.pastries,
       number: "04",
       items: [
-        { name: "Butter Croissant", price: "9 RON", description: "Flaky, buttery, and freshly baked." },
-        { name: "Pain au Chocolat", price: "11 RON", description: "Classic French pastry with dark chocolate." },
-        { name: "Banana Bread", price: "14 RON", description: "Toasted with espresso butter." },
-        { name: "Avocado Toast", price: "28 RON", description: "Sourdough, chili flakes, and lime." },
+        { name: "Butter Croissant", price: "9 RON", description: t.menu.croissantDesc },
+        { name: "Pain au Chocolat", price: "11 RON", description: t.menu.painChocDesc },
+        { name: "Banana Bread", price: "14 RON", description: t.menu.bananaBreadDesc },
+        { name: "Avocado Toast", price: "28 RON", description: t.menu.avocadoDesc },
       ]
     }
   ];
@@ -106,25 +109,21 @@ const Menu = () => {
       <Navbar />
       
       <div className="pt-40 pb-24 container mx-auto px-6 max-w-5xl">
-        {/* Hero / Intro */}
         <header className="mb-24 text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start space-x-4 mb-4">
             <span className="text-coffee-gold font-bold text-xs tracking-[0.3em] uppercase">00</span>
             <div className="w-12 h-[1px] bg-coffee-yellow" />
           </div>
-          <h1 className="text-5xl md:text-7xl font-serif text-coffee-petrol mb-6">Menu</h1>
+          <h1 className="text-5xl md:text-7xl font-serif text-coffee-petrol mb-6">{t.menu.title}</h1>
           <p className="text-lg md:text-xl text-coffee-soft max-w-2xl leading-relaxed">
-            Crafted coffee, seasonal drinks, and small bites served with care. 
-            Each cup tells a story of origin and craftsmanship.
+            {t.menu.desc}
           </p>
         </header>
 
-        {/* Menu Categories */}
         {menuData.map((category, index) => (
           <MenuCategory key={index} {...category} />
         ))}
 
-        {/* Allergy Note */}
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -132,8 +131,7 @@ const Menu = () => {
           className="mt-12 p-8 md:p-12 rounded-[2rem] bg-coffee-blue/5 border border-coffee-blue/10 text-center"
         >
           <p className="text-coffee-petrol/70 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-            Please inform our staff of any allergies or dietary requirements. 
-            Oat and almond milk alternatives are available for all milk-based drinks.
+            {t.menu.allergy}
           </p>
         </motion.div>
       </div>

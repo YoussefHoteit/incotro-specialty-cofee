@@ -1,14 +1,16 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,16 +21,19 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Menu', href: '/menu' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Gallery', href: '/gallery' },
-    { name: 'Contact', href: '/contact' },
+    { name: t.nav.home, href: '/' },
+    { name: t.nav.menu, href: '/menu' },
+    { name: t.nav.about, href: '/about' },
+    { name: t.nav.gallery, href: '/gallery' },
+    { name: t.nav.contact, href: '/contact' },
   ];
 
-  // Force solid state on pages with light backgrounds or when mobile menu is open
   const isSolidPage = location.pathname === '/menu';
   const showGlassy = isScrolled || isSolidPage || isMobileMenuOpen;
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'ro' ? 'en' : 'ro');
+  };
 
   return (
     <nav 
@@ -41,7 +46,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="flex flex-col">
           <span className="text-2xl font-bold tracking-tighter leading-none">înCotro</span>
-          <span className="text-[10px] uppercase tracking-[0.2em] font-medium opacity-80">Specialty Coffee</span>
+          <span className="text-[10px] uppercase tracking-[0.2em] font-medium opacity-80">{t.footer.specialty}</span>
         </Link>
 
         {/* Desktop Menu */}
@@ -58,9 +63,21 @@ const Navbar = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-coffee-yellow transition-all group-hover:w-full" />
             </Link>
           ))}
-          <button className="bg-coffee-yellow text-coffee-petrol px-5 py-2 rounded-full text-sm font-bold hover:bg-coffee-gold transition-colors shadow-sm">
-            Visit Us
+          
+          {/* Language Toggle */}
+          <button 
+            onClick={toggleLanguage}
+            className="flex items-center space-x-1 text-xs font-bold tracking-widest uppercase hover:text-coffee-gold transition-colors"
+          >
+            <Globe size={14} />
+            <span>{language === 'ro' ? 'RO' : 'EN'}</span>
           </button>
+
+          <Link to="/contact">
+            <button className="bg-coffee-yellow text-coffee-petrol px-5 py-2 rounded-full text-sm font-bold hover:bg-coffee-gold transition-colors shadow-sm">
+              {t.nav.visit}
+            </button>
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -92,9 +109,24 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <button className="bg-coffee-yellow text-coffee-petrol w-full py-3 rounded-xl font-bold mt-4 shadow-md">
-                Visit Us
+              
+              {/* Mobile Language Toggle */}
+              <button 
+                onClick={toggleLanguage}
+                className="flex items-center justify-between py-2 border-b border-coffee-blue/5"
+              >
+                <span className="text-lg font-medium">Language / Limbă</span>
+                <div className="flex items-center space-x-2 bg-coffee-blue/5 px-3 py-1 rounded-full">
+                  <Globe size={16} />
+                  <span className="text-sm font-bold uppercase">{language === 'ro' ? 'Română' : 'English'}</span>
+                </div>
               </button>
+
+              <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <button className="bg-coffee-yellow text-coffee-petrol w-full py-3 rounded-xl font-bold mt-4 shadow-md">
+                  {t.nav.visit}
+                </button>
+              </Link>
             </div>
           </motion.div>
         )}

@@ -2,39 +2,42 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-
-const images = [
-  {
-    url: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop",
-    title: "The Interior",
-    desc: "Deep blue walls & warm lighting"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop",
-    title: "The Craft",
-    desc: "Precision in every pour"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1974&auto=format&fit=crop",
-    title: "The Vibe",
-    desc: "Fresh flowers & cozy corners"
-  }
-];
+import { useLanguage } from '../context/LanguageContext';
 
 const SignatureExperience = () => {
+  const { t } = useLanguage();
+
+  const images = [
+    {
+      url: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop",
+      title: t.signature.interior,
+      desc: t.signature.interiorDesc
+    },
+    {
+      url: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop",
+      title: t.signature.craft,
+      desc: t.signature.craftDesc
+    },
+    {
+      url: "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1974&auto=format&fit=crop",
+      title: t.signature.vibe,
+      desc: t.signature.vibeDesc
+    }
+  ];
+
   return (
     <section id="gallery" className="py-24 bg-coffee-blue text-coffee-cream overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">The înCotro Experience</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">{t.signature.experience}</h2>
             <p className="text-coffee-cream/70 text-lg">
-              Step into a world where time slows down. Our space is designed to inspire, with deep blue walls that provide a calm backdrop for the vibrant yellow details that spark creativity.
+              {t.signature.desc}
             </p>
           </div>
           <div className="hidden md:block">
             <div className="w-24 h-24 border-2 border-coffee-yellow rounded-full flex items-center justify-center text-coffee-yellow font-bold text-xs uppercase tracking-widest text-center p-4">
-              Est. 2023 Bucharest
+              {t.signature.est}
             </div>
           </div>
         </div>
@@ -61,7 +64,6 @@ const SignatureExperience = () => {
                 <h3 className="text-lg md:text-2xl font-bold text-coffee-yellow mb-1 md:mb-2">{img.title}</h3>
                 <p className="text-[10px] md:text-sm text-coffee-cream/80 uppercase tracking-widest">{img.desc}</p>
               </div>
-              {/* Tulip Red Accent Detail */}
               <div className="absolute top-6 right-6 w-2 h-2 bg-coffee-red rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
           ))}

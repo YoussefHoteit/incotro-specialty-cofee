@@ -3,15 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-
-const menuItems = [
-  { name: "Espresso", price: "12", desc: "Double shot of our seasonal single origin." },
-  { name: "Flat White", price: "16", desc: "Silky micro-foam over a rich double espresso." },
-  { name: "Cappuccino", price: "15", desc: "The perfect balance of coffee, milk, and foam." },
-  { name: "V60 Pour Over", price: "18", desc: "Hand-brewed seasonal selection." },
-  { name: "Artisan Cookie", price: "10", desc: "Handcrafted daily with dark chocolate and sea salt." },
-  { name: "Banana Bread", price: "14", desc: "Toasted with espresso butter." }
-];
+import { useLanguage } from '../context/LanguageContext';
 
 const MenuPreviewItem = ({ name, price, desc }: { name: string, price: string, desc: string }) => (
   <motion.div 
@@ -34,13 +26,24 @@ const MenuPreviewItem = ({ name, price, desc }: { name: string, price: string, d
 );
 
 const MenuPreview = () => {
+  const { t } = useLanguage();
+
+  const menuItems = [
+    { name: "Espresso", price: "12", desc: t.menu.espressoDesc },
+    { name: "Flat White", price: "16", desc: t.menu.flatWhiteDesc },
+    { name: "Cappuccino", price: "15", desc: t.menu.cappuccinoDesc },
+    { name: "V60 Pour Over", price: "18", desc: t.menu.v60Desc },
+    { name: "Artisan Cookie", price: "10", desc: t.menu.croissantDesc },
+    { name: "Banana Bread", price: "14", desc: t.menu.bananaBreadDesc }
+  ];
+
   return (
     <section id="menu" className="py-24 bg-coffee-cream">
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="flex items-center justify-between mb-16">
           <div className="flex flex-col">
-            <span className="text-coffee-yellow font-bold text-xs uppercase tracking-[0.3em] mb-2">Our Favorites</span>
-            <h2 className="text-4xl md:text-5xl font-serif text-coffee-petrol">Crafted with Precision</h2>
+            <span className="text-coffee-yellow font-bold text-xs uppercase tracking-[0.3em] mb-2">{t.menuPreview.favorites}</span>
+            <h2 className="text-4xl md:text-5xl font-serif text-coffee-petrol">{t.menuPreview.crafted}</h2>
           </div>
           <div className="hidden md:block flex-grow h-[1px] bg-coffee-blue/10 mx-12" />
           <span className="hidden md:block text-sm font-medium text-coffee-gold tracking-widest">
@@ -57,7 +60,7 @@ const MenuPreview = () => {
         <div className="text-center">
           <Link to="/menu" className="inline-flex items-center space-x-4 group">
             <span className="text-coffee-petrol font-bold text-lg border-b-2 border-coffee-yellow pb-1 group-hover:border-coffee-petrol transition-colors">
-              Explore Full Menu
+              {t.menuPreview.explore}
             </span>
             <div className="w-12 h-12 rounded-full bg-coffee-yellow flex items-center justify-center group-hover:bg-coffee-petrol group-hover:text-coffee-yellow transition-all shadow-sm">
               <span className="text-xl">→</span>
