@@ -4,11 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 const Hero = () => {
-  const { t } = useLanguage();
-  
   const scrollToAbout = () => {
     const element = document.getElementById('about');
     element?.scrollIntoView({ behavior: 'smooth' });
@@ -16,12 +13,14 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-center bg-coffee-blue">
+      {/* Background Image with Premium Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
           src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2071&auto=format&fit=crop" 
           alt="înCotro Atmosphere" 
           className="w-full h-full object-cover"
         />
+        {/* Premium Gradient Overlay matching About page */}
         <div className="absolute inset-0 bg-gradient-to-r from-coffee-petrol/90 via-coffee-petrol/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-coffee-petrol/40 via-transparent to-transparent" />
       </div>
@@ -40,17 +39,16 @@ const Hero = () => {
               transition={{ delay: 0.5, duration: 0.8 }}
               className="h-[1px] bg-coffee-yellow" 
             />
-            <span className="text-coffee-yellow font-bold tracking-[0.4em] uppercase text-xs">{t('hero.subtitle')}</span>
+            <span className="text-coffee-yellow font-bold tracking-[0.4em] uppercase text-xs">Bucharest's Finest Ritual</span>
           </div>
           
           <h1 className="text-5xl md:text-8xl font-serif text-coffee-cream mb-8 leading-[1.1]">
-            {t('hero.title').split(t('hero.titleItalic'))[0]}
-            <span className="text-coffee-yellow italic">{t('hero.titleItalic')}</span>
-            {t('hero.title').split(t('hero.titleItalic'))[1]}
+            Specialty coffee with a <br />
+            <span className="text-coffee-yellow italic">bright</span> Bucharest soul.
           </h1>
           
           <p className="text-lg md:text-xl text-coffee-cream/80 leading-relaxed max-w-xl mb-12 font-light">
-            {t('hero.description')}
+            A colorful corner for crafted coffee, warm conversations, and everyday rituals in the heart of the city.
           </p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
@@ -58,19 +56,20 @@ const Hero = () => {
               to="/menu" 
               className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
             >
-              {t('hero.viewMenu')}
+              View Menu
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
             </Link>
             <Link 
               to="/contact" 
               className="text-coffee-cream/80 hover:text-coffee-cream transition-colors text-sm font-bold tracking-widest uppercase border-b border-coffee-cream/20 pb-1"
             >
-              {t('hero.visitUs')}
+              Visit Us
             </Link>
           </div>
         </motion.div>
       </div>
 
+      {/* Animated Scroll Cue matching About page */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -78,7 +77,7 @@ const Hero = () => {
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer"
         onClick={scrollToAbout}
       >
-        <span className="text-[10px] text-coffee-cream/40 uppercase tracking-[0.3em] mb-4">{t('hero.scroll')}</span>
+        <span className="text-[10px] text-coffee-cream/40 uppercase tracking-[0.3em] mb-4">Scroll to explore</span>
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}

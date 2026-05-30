@@ -1,16 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,19 +19,16 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: t('navbar.home'), href: '/' },
-    { name: t('navbar.menu'), href: '/menu' },
-    { name: t('navbar.about'), href: '/about' },
-    { name: t('navbar.gallery'), href: '/gallery' },
-    { name: t('navbar.contact'), href: '/contact' },
+    { name: 'Home', href: '/' },
+    { name: 'Menu', href: '/menu' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Gallery', href: '/gallery' },
+    { name: 'Contact', href: '/contact' },
   ];
 
+  // Force solid state on pages with light backgrounds or when mobile menu is open
   const isSolidPage = location.pathname === '/menu';
   const showGlassy = isScrolled || isSolidPage || isMobileMenuOpen;
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'ro' : 'en');
-  };
 
   return (
     <nav 
@@ -53,7 +48,7 @@ const Navbar = () => {
         <div className="hidden md:flex space-x-8 items-center">
           {navLinks.map((link) => (
             <Link 
-              key={link.href} 
+              key={link.name} 
               to={link.href}
               className={`text-sm font-medium transition-all relative group ${
                 location.pathname === link.href ? 'text-coffee-gold' : ''
@@ -63,36 +58,18 @@ const Navbar = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-coffee-yellow transition-all group-hover:w-full" />
             </Link>
           ))}
-          
-          {/* Language Toggle */}
-          <button 
-            onClick={toggleLanguage}
-            className="flex items-center space-x-1 text-xs font-bold uppercase tracking-widest hover:text-coffee-gold transition-colors"
-          >
-            <Globe size={14} />
-            <span>{language === 'en' ? 'RO' : 'EN'}</span>
-          </button>
-
           <button className="bg-coffee-yellow text-coffee-petrol px-5 py-2 rounded-full text-sm font-bold hover:bg-coffee-gold transition-colors shadow-sm">
-            {t('navbar.visit')}
+            Visit Us
           </button>
         </div>
 
         {/* Mobile Toggle */}
-        <div className="flex items-center space-x-4 md:hidden">
-          <button 
-            onClick={toggleLanguage}
-            className="flex items-center space-x-1 text-xs font-bold uppercase tracking-widest"
-          >
-            <Globe size={14} />
-            <span>{language === 'en' ? 'RO' : 'EN'}</span>
-          </button>
-          <button 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
+        <button 
+          className="md:hidden"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
 
       {/* Mobile Menu */}
@@ -107,7 +84,7 @@ const Navbar = () => {
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <Link 
-                  key={link.href} 
+                  key={link.name} 
                   to={link.href}
                   className="text-lg font-medium border-b border-coffee-blue/5 pb-2"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -116,7 +93,7 @@ const Navbar = () => {
                 </Link>
               ))}
               <button className="bg-coffee-yellow text-coffee-petrol w-full py-3 rounded-xl font-bold mt-4 shadow-md">
-                {t('navbar.visit')}
+                Visit Us
               </button>
             </div>
           </motion.div>
