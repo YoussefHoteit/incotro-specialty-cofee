@@ -49,44 +49,48 @@ const Navbar = () => {
           <span className="text-[10px] uppercase tracking-[0.2em] font-medium opacity-80">{t.footer.specialty}</span>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8 items-center">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              to={link.href}
-              className={`text-sm font-medium transition-all relative group ${
-                location.pathname === link.href ? 'text-coffee-gold' : ''
-              }`}
-            >
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-coffee-yellow transition-all group-hover:w-full" />
-            </Link>
-          ))}
+        <div className="flex items-center space-x-4 md:space-x-8">
+          {/* Desktop Menu Links */}
+          <div className="hidden md:flex space-x-8 items-center">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.name} 
+                to={link.href}
+                className={`text-sm font-medium transition-all relative group ${
+                  location.pathname === link.href ? 'text-coffee-gold' : ''
+                }`}
+              >
+                {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-coffee-yellow transition-all group-hover:w-full" />
+              </Link>
+            ))}
+          </div>
           
-          {/* Language Toggle */}
+          {/* Language Toggle - Visible on both Desktop and Mobile */}
           <button 
             onClick={toggleLanguage}
-            className="flex items-center space-x-1 text-xs font-bold tracking-widest uppercase hover:text-coffee-gold transition-colors"
+            className="flex items-center space-x-1.5 text-xs font-bold tracking-widest uppercase hover:text-coffee-gold transition-colors p-2 rounded-full hover:bg-coffee-blue/5"
+            aria-label="Toggle Language"
           >
-            <Globe size={14} />
-            <span>{language === 'ro' ? 'RO' : 'EN'}</span>
+            <Globe size={18} />
+            <span className="hidden xs:inline">{language === 'ro' ? 'RO' : 'EN'}</span>
           </button>
 
-          <Link to="/contact">
+          {/* Visit Us Button - Desktop only */}
+          <Link to="/contact" className="hidden md:block">
             <button className="bg-coffee-yellow text-coffee-petrol px-5 py-2 rounded-full text-sm font-bold hover:bg-coffee-gold transition-colors shadow-sm">
               {t.nav.visit}
             </button>
           </Link>
-        </div>
 
-        {/* Mobile Toggle */}
-        <button 
-          className="md:hidden"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="md:hidden p-1"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -110,18 +114,6 @@ const Navbar = () => {
                 </Link>
               ))}
               
-              {/* Mobile Language Toggle */}
-              <button 
-                onClick={toggleLanguage}
-                className="flex items-center justify-between py-2 border-b border-coffee-blue/5"
-              >
-                <span className="text-lg font-medium">Language / Limbă</span>
-                <div className="flex items-center space-x-2 bg-coffee-blue/5 px-3 py-1 rounded-full">
-                  <Globe size={16} />
-                  <span className="text-sm font-bold uppercase">{language === 'ro' ? 'Română' : 'English'}</span>
-                </div>
-              </button>
-
               <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                 <button className="bg-coffee-yellow text-coffee-petrol w-full py-3 rounded-xl font-bold mt-4 shadow-md">
                   {t.nav.visit}
