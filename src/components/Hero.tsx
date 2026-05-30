@@ -15,7 +15,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-center bg-coffee-blue">
+    <section className="relative h-screenw-full overflow-hidden flex items-center bg-coffee-blue">
       <div className="absolute inset-0 z-0">
         <img 
           src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2071&auto=format&fit=crop" 
@@ -53,20 +53,22 @@ const Hero = () => {
             {t('hero.description')}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <Link 
-              to="/menu" 
-              className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
-            >
-              {t('hero.viewMenu')}
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-            </Link>
-            <Link 
-              to="/contact" 
-              className="text-coffee-cream/80 hover:text-coffee-cream transition-colors text-sm font-bold tracking-widest uppercase border-b border-coffee-cream/20 pb-1"
-            >
-              {t('hero.visitUs')}
-            </Link>
+          <div className="flex flex-col items-start gap-6">
+            <div className="flex flex-col items-center gap-4">
+              <Link 
+                to="/menu" 
+                className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group min-w-[200px] justify-center"
+              >
+                {t('hero.viewMenu')}
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+              </Link>
+              <Link 
+                to="/contact" 
+                className="text-coffee-cream/80 hover:text-coffee-cream transition-colors text-sm font-bold tracking-widest uppercase border-b border-coffee-cream/20 pb-1"
+              >
+                {t('hero.visitUs')}
+              </Link>
+            </div>
           </div>
         </motion.div>
       </div>
