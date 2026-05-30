@@ -139,13 +139,46 @@ const galleryImages = [
   }
 ];
 
+// Helper to determine grid spans for the "puzzle" effect
+const getGridSpan = (index: number) => {
+  const spans = [
+    "md:col-span-1 md:row-span-2", // 0: Tall
+    "md:col-span-1 md:row-span-1", // 1: Square
+    "md:col-span-2 md:row-span-1", // 2: Wide
+    "md:col-span-1 md:row-span-1", // 3: Square
+    "md:col-span-1 md:row-span-2", // 4: Tall
+    "md:col-span-2 md:row-span-2", // 5: Large
+    "md:col-span-1 md:row-span-1", // 6: Square
+    "md:col-span-1 md:row-span-1", // 7: Square
+    "md:col-span-1 md:row-span-2", // 8: Tall
+    "md:col-span-2 md:row-span-1", // 9: Wide
+    "md:col-span-1 md:row-span-1", // 10: Square
+    "md:col-span-1 md:row-span-1", // 11: Square
+    "md:col-span-1 md:row-span-2", // 12: Tall
+    "md:col-span-1 md:row-span-1", // 13: Square
+    "md:col-span-1 md:row-span-1", // 14: Square
+    "md:col-span-2 md:row-span-2", // 15: Large
+    "md:col-span-1 md:row-span-1", // 16: Square
+    "md:col-span-1 md:row-span-2", // 17: Tall
+    "md:col-span-1 md:row-span-1", // 18: Square
+    "md:col-span-1 md:row-span-1", // 19: Square
+    "md:col-span-2 md:row-span-1", // 20: Wide
+    "md:col-span-1 md:row-span-2", // 21: Tall
+    "md:col-span-1 md:row-span-1", // 22: Square
+    "md:col-span-1 md:row-span-1", // 23: Square
+    "md:col-span-1 md:row-span-1", // 24: Square
+    "md:col-span-1 md:row-span-1", // 25: Square
+  ];
+  return spans[index % spans.length];
+};
+
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const openLightbox = (index: number) => setSelectedImage(index);
   const closeLightbox = () => setSelectedImage(null);
   const nextImage = () => setSelectedImage((prev) => (prev !== null ? (prev + 1) % galleryImages.length : null));
-  const prevImage = () => setSelectedImage((prev) => (prev !== null ? (prev - 1 + galleryImages.length) % galleryImages.length : null));
+  const prevImage = () => setSelectedImage((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
 
   return (
     <main className="min-h-screen bg-coffee-cream selection:bg-coffee-yellow selection:text-coffee-petrol">
@@ -171,24 +204,25 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* Masonry Gallery Grid */}
+      {/* Puzzle-style Masonry Gallery Grid */}
       <section className="py-24 bg-coffee-cream">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="columns-2 md:columns-2 lg:columns-3 gap-4 md:gap-8 space-y-4 md:space-y-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 grid-auto-flow-dense">
             {galleryImages.map((img, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="relative group cursor-pointer overflow-hidden rounded-2xl md:rounded-[2rem] break-inside-avoid shadow-sm hover:shadow-xl transition-all duration-500"
+                transition={{ delay: (index % 10) * 0.05 }}
+                className={`relative group cursor-pointer overflow-hidden rounded-xl md:rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-500 min-h-[200px] ${getGridSpan(index)}`}
                 onClick={() => openLightbox(index)}
               >
                 <img 
                   src={img.url} 
                   alt={img.caption} 
-                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-coffee-petrol/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4 md:p-8">
                   <span className="text-coffee-yellow font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1 md:mb-2">{img.category}</span>
