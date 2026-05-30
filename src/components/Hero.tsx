@@ -2,84 +2,90 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Coffee, ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
+  const scrollToAbout = () => {
+    const element = document.getElementById('about');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-center">
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2071&auto=format&fit=crop")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        {/* Removed backdrop-blur to prevent rendering issues with the background image */}
-        <div className="absolute inset-0 bg-coffee-petrol/60" />
-        
-        {/* Bottom Fade Transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-coffee-cream via-coffee-cream/40 to-transparent" />
+    <section className="relative h-screen w-full overflow-hidden flex items-center bg-coffee-blue">
+      {/* Background Image with Premium Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2071&auto=format&fit=crop" 
+          alt="înCotro Atmosphere" 
+          className="w-full h-full object-cover"
+        />
+        {/* Premium Gradient Overlay matching About page */}
+        <div className="absolute inset-0 bg-gradient-to-r from-coffee-petrol/90 via-coffee-petrol/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-coffee-petrol/40 via-transparent to-transparent" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="h-[2px] w-12 bg-coffee-yellow" />
-              <span className="text-coffee-yellow font-bold tracking-widest uppercase text-sm">Bucharest's Finest</span>
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold text-coffee-cream leading-tight mb-6">
-              Specialty coffee with a <span className="text-coffee-yellow">bright</span> Bucharest soul.
-            </h1>
-            
-            <p className="text-xl text-coffee-cream/80 mb-10 max-w-xl leading-relaxed">
-              A colorful corner for crafted coffee, warm conversations, and everyday rituals in the heart of the city.
-            </p>
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-4xl"
+        >
+          <div className="flex items-center space-x-4 mb-8">
+            <motion.div 
+              initial={{ width: 0 }}
+              animate={{ width: 48 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="h-[1px] bg-coffee-yellow" 
+            />
+            <span className="text-coffee-yellow font-bold tracking-[0.4em] uppercase text-xs">Bucharest's Finest Ritual</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-8xl font-serif text-coffee-cream mb-8 leading-[1.1]">
+            Specialty coffee with a <br />
+            <span className="text-coffee-yellow italic">bright</span> Bucharest soul.
+          </h1>
+          
+          <p className="text-lg md:text-xl text-coffee-cream/80 leading-relaxed max-w-xl mb-12 font-light">
+            A colorful corner for crafted coffee, warm conversations, and everyday rituals in the heart of the city.
+          </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link 
-                to="/menu" 
-                className="bg-coffee-yellow/90 border border-white/20 text-coffee-petrol px-6 py-3 rounded-full font-bold text-base hover:bg-coffee-yellow transition-all flex items-center justify-center group"
-              >
-                View Menu
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-              </Link>
-              <Link 
-                to="/contact" 
-                className="bg-white/10 border border-white/30 text-coffee-cream px-6 py-3 rounded-full font-bold text-base hover:bg-white/20 transition-all text-center"
-              >
-                Visit Us
-              </Link>
-            </div>
-          </motion.div>
-        </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <Link 
+              to="/menu" 
+              className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
+            >
+              View Menu
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+            </Link>
+            <Link 
+              to="/contact" 
+              className="text-coffee-cream/80 hover:text-coffee-cream transition-colors text-sm font-bold tracking-widest uppercase border-b border-coffee-cream/20 pb-1"
+            >
+              Visit Us
+            </Link>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Animated Detail */}
+      {/* Animated Scroll Cue matching About page */}
       <motion.div 
-        animate={{ y: [0, -15, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-10 right-10 hidden lg:block"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer"
+        onClick={scrollToAbout}
       >
-        <div className="relative">
-          <div className="absolute -inset-4 bg-coffee-yellow/20 rounded-full blur-xl animate-pulse" />
-          <Coffee className="text-coffee-yellow relative" size={64} strokeWidth={1.5} />
-        </div>
+        <span className="text-[10px] text-coffee-cream/40 uppercase tracking-[0.3em] mb-4">Scroll to explore</span>
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="text-coffee-yellow"
+        >
+          <ArrowDown size={20} strokeWidth={1.5} />
+        </motion.div>
       </motion.div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-coffee-cream/50">
-        <span className="text-[10px] uppercase tracking-widest mb-2">Scroll</span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-coffee-yellow to-transparent" />
-      </div>
     </section>
   );
 };
