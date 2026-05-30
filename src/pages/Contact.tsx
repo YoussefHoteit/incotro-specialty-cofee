@@ -36,8 +36,8 @@ const Contact = () => {
       <section className="relative h-screen flex items-center overflow-hidden bg-coffee-blue">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1501339819358-ee5969a2f5ac?q=80&w=2069&auto=format&fit=crop" 
-            alt="Café Exterior" 
+            src="/gallery/entrance-view.jpg" 
+            alt="înCotro Café Exterior" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-coffee-petrol/90 via-coffee-petrol/50 to-transparent" />
