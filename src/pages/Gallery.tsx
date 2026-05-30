@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { X, ChevronLeft, ChevronRight, Instagram } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Instagram, ArrowDown, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const Gallery = () => {
@@ -45,30 +45,82 @@ const Gallery = () => {
   const nextImage = () => setSelectedImage((prev) => (prev !== null ? (prev + 1) % galleryImages.length : null));
   const prevImage = () => setSelectedImage((prev) => (prev !== null ? (prev - 1 + galleryImages.length) % galleryImages.length : null));
 
+  const scrollToGallery = () => {
+    const element = document.getElementById('gallery-grid');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <main className="min-h-screen bg-coffee-cream selection:bg-coffee-yellow selection:text-coffee-petrol">
       <Navbar />
 
-      <section className="pt-40 pb-24 bg-coffee-blue text-coffee-cream overflow-hidden">
-        <div className="container mx-auto px-6">
+      <section className="relative h-screen flex items-center overflow-hidden bg-coffee-blue">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop" 
+            alt="înCotro Gallery Atmosphere" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-coffee-petrol/90 via-coffee-petrol/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-coffee-petrol/40 via-transparent to-transparent" />
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-3xl"
           >
-            <div className="flex items-center space-x-4 mb-6">
-              <div className="w-12 h-[1px] bg-coffee-yellow" />
-              <span className="text-coffee-yellow font-bold tracking-widest uppercase text-sm">{t.gallery.visualStory}</span>
+            <div className="flex items-center space-x-4 mb-8">
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={{ width: 48 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="h-[1px] bg-coffee-yellow" 
+              />
+              <span className="text-coffee-yellow font-bold tracking-[0.4em] uppercase text-xs">{t.gallery.visualStory}</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-serif mb-6">{t.gallery.heroTitle}</h1>
-            <p className="text-xl text-coffee-cream/80 leading-relaxed">
+            
+            <h1 className="text-5xl md:text-8xl font-serif text-coffee-cream mb-8 leading-[1.1]">
+              {t.gallery.heroTitle}
+            </h1>
+            
+            <p className="text-lg md:text-xl text-coffee-cream/80 leading-relaxed max-w-xl mb-12 font-light">
               {t.gallery.heroDesc}
             </p>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              <button 
+                onClick={scrollToGallery}
+                className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
+              >
+                {t.gallery.visualStory}
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+              </button>
+            </div>
           </motion.div>
         </div>
+
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer"
+          onClick={scrollToGallery}
+        >
+          <span className="text-[10px] text-coffee-cream/40 uppercase tracking-[0.3em] mb-4">{t.hero.scroll}</span>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="text-coffee-yellow"
+          >
+            <ArrowDown size={20} strokeWidth={1.5} />
+          </motion.div>
+        </motion.div>
       </section>
 
-      <section className="py-24 bg-coffee-cream">
+      <section id="gallery-grid" className="py-24 bg-coffee-cream">
         <div className="container mx-auto px-4 md:px-6">
           <div className="columns-2 md:columns-2 lg:columns-3 gap-4 md:gap-8 space-y-4 md:space-y-8">
             {galleryImages.map((img, index) => (
