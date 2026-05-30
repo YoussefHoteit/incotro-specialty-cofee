@@ -52,7 +52,7 @@ const Hero = () => {
             {t.hero.desc}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <div className="flex flex-col items-start gap-6">
             <Link 
               to="/menu" 
               className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
@@ -62,7 +62,7 @@ const Hero = () => {
             </Link>
             <Link 
               to="/contact" 
-              className="text-coffee-cream/80 hover:text-coffee-cream transition-colors text-sm font-bold tracking-widest uppercase border-b border-coffee-cream/20 pb-1"
+              className="text-coffee-cream/80 hover:text-coffee-cream transition-colors text-sm font-bold tracking-widest uppercase border-b border-coffee-cream/20 pb-1 ml-4"
             >
               {t.hero.visitUs}
             </Link>
