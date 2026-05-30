@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface MenuItemProps {
   name: string;
@@ -57,46 +58,48 @@ const MenuCategory = ({ title, number, items }: MenuCategoryProps) => (
 );
 
 const Menu = () => {
+  const { t, language } = useLanguage();
+
   const menuData = [
     {
-      title: "Espresso Bar",
+      title: t('menuPage.categories.espresso'),
       number: "01",
       items: [
-        { name: "Espresso", price: "10 RON", description: "Double shot of our seasonal single origin." },
-        { name: "Long Black", price: "12 RON", description: "Espresso over hot water." },
-        { name: "Cortado", price: "13 RON", description: "Equal parts espresso and steamed milk." },
-        { name: "Flat White", price: "15 RON", description: "Double shot with silky micro-foam." },
-        { name: "Cappuccino", price: "15 RON", description: "Classic balance of espresso, milk, and foam." },
-        { name: "Latte", price: "17 RON", description: "Double shot with plenty of steamed milk." },
+        { name: "Espresso", price: "10 RON", description: language === 'en' ? "Double shot of our seasonal single origin." : "Shot dublu din originea noastră sezonieră." },
+        { name: "Long Black", price: "12 RON", description: language === 'en' ? "Espresso over hot water." : "Espresso peste apă fierbinte." },
+        { name: "Cortado", price: "13 RON", description: language === 'en' ? "Equal parts espresso and steamed milk." : "Părți egale de espresso și lapte cremos." },
+        { name: "Flat White", price: "15 RON", description: language === 'en' ? "Double shot with silky micro-foam." : "Shot dublu cu micro-spumă fină." },
+        { name: "Cappuccino", price: "15 RON", description: language === 'en' ? "Classic balance of espresso, milk, and foam." : "Echilibru clasic între espresso, lapte și spumă." },
+        { name: "Latte", price: "17 RON", description: language === 'en' ? "Double shot with plenty of steamed milk." : "Shot dublu cu mult lapte cremos." },
       ]
     },
     {
-      title: "Filter Coffee",
+      title: t('menuPage.categories.filter'),
       number: "02",
       items: [
-        { name: "V60 Pour Over", price: "18 RON", description: "Hand-brewed seasonal selection." },
-        { name: "Batch Brew", price: "12 RON", description: "Quick, clean, and consistently delicious." },
-        { name: "Cold Brew", price: "16 RON", description: "Steeped for 18 hours for a smooth finish." },
+        { name: "V60 Pour Over", price: "18 RON", description: language === 'en' ? "Hand-brewed seasonal selection." : "Selecție sezonieră preparată manual." },
+        { name: "Batch Brew", price: "12 RON", description: language === 'en' ? "Quick, clean, and consistently delicious." : "Rapid, curat și constant delicios." },
+        { name: "Cold Brew", price: "16 RON", description: language === 'en' ? "Steeped for 18 hours for a smooth finish." : "Infuzat timp de 18 ore pentru un gust fin." },
       ]
     },
     {
-      title: "Non-Coffee & Seasonal",
+      title: t('menuPage.categories.nonCoffee'),
       number: "03",
       items: [
-        { name: "Hot Chocolate", price: "16 RON", description: "Single-origin 70% dark chocolate." },
-        { name: "Matcha Latte", price: "18 RON", description: "Ceremonial grade Japanese matcha." },
-        { name: "Loose Leaf Tea", price: "14 RON", description: "Selection of black, green, and herbal teas." },
-        { name: "Fresh Lemonade", price: "15 RON", description: "With seasonal fruit infusions." },
+        { name: "Hot Chocolate", price: "16 RON", description: language === 'en' ? "Single-origin 70% dark chocolate." : "Ciocolată neagră 70% de origine unică." },
+        { name: "Matcha Latte", price: "18 RON", description: language === 'en' ? "Ceremonial grade Japanese matcha." : "Matcha japoneză de grad ceremonial." },
+        { name: "Loose Leaf Tea", price: "14 RON", description: language === 'en' ? "Selection of black, green, and herbal teas." : "Selecție de ceaiuri negre, verzi și de plante." },
+        { name: "Fresh Lemonade", price: "15 RON", description: language === 'en' ? "With seasonal fruit infusions." : "Cu infuzii de fructe sezoniere." },
       ]
     },
     {
-      title: "Pastries & Bites",
+      title: t('menuPage.categories.pastries'),
       number: "04",
       items: [
-        { name: "Butter Croissant", price: "9 RON", description: "Flaky, buttery, and freshly baked." },
-        { name: "Pain au Chocolat", price: "11 RON", description: "Classic French pastry with dark chocolate." },
-        { name: "Banana Bread", price: "14 RON", description: "Toasted with espresso butter." },
-        { name: "Avocado Toast", price: "28 RON", description: "Sourdough, chili flakes, and lime." },
+        { name: "Butter Croissant", price: "9 RON", description: language === 'en' ? "Flaky, buttery, and freshly baked." : "Fraged, cu unt și proaspăt copt." },
+        { name: "Pain au Chocolat", price: "11 RON", description: language === 'en' ? "Classic French pastry with dark chocolate." : "Patiserie franceză clasică cu ciocolată neagră." },
+        { name: "Banana Bread", price: "14 RON", description: language === 'en' ? "Toasted with espresso butter." : "Prăjit cu unt de espresso." },
+        { name: "Avocado Toast", price: "28 RON", description: language === 'en' ? "Sourdough, chili flakes, and lime." : "Maia, fulgi de chili și lime." },
       ]
     }
   ];
@@ -106,25 +109,21 @@ const Menu = () => {
       <Navbar />
       
       <div className="pt-40 pb-24 container mx-auto px-6 max-w-5xl">
-        {/* Hero / Intro */}
         <header className="mb-24 text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start space-x-4 mb-4">
             <span className="text-coffee-gold font-bold text-xs tracking-[0.3em] uppercase">00</span>
             <div className="w-12 h-[1px] bg-coffee-yellow" />
           </div>
-          <h1 className="text-5xl md:text-7xl font-serif text-coffee-petrol mb-6">Menu</h1>
+          <h1 className="text-5xl md:text-7xl font-serif text-coffee-petrol mb-6">{t('menuPage.title')}</h1>
           <p className="text-lg md:text-xl text-coffee-soft max-w-2xl leading-relaxed">
-            Crafted coffee, seasonal drinks, and small bites served with care. 
-            Each cup tells a story of origin and craftsmanship.
+            {t('menuPage.description')}
           </p>
         </header>
 
-        {/* Menu Categories */}
         {menuData.map((category, index) => (
           <MenuCategory key={index} {...category} />
         ))}
 
-        {/* Allergy Note */}
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -132,8 +131,7 @@ const Menu = () => {
           className="mt-12 p-8 md:p-12 rounded-[2rem] bg-coffee-blue/5 border border-coffee-blue/10 text-center"
         >
           <p className="text-coffee-petrol/70 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-            Please inform our staff of any allergies or dietary requirements. 
-            Oat and almond milk alternatives are available for all milk-based drinks.
+            {t('menuPage.allergy')}
           </p>
         </motion.div>
       </div>
