@@ -57,7 +57,7 @@ const Hero = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-4xl"
+          className="max-w-5xl"
         >
           <motion.div variants={itemVariants} className="flex items-center space-x-4 mb-8">
             <motion.div 
@@ -69,16 +69,15 @@ const Hero = () => {
             <span className="text-coffee-yellow font-bold tracking-[0.4em] uppercase text-xs">{t.hero.ritual}</span>
           </motion.div>
           
-          <motion.h1 variants={itemVariants} className="text-5xl md:text-8xl font-serif text-coffee-cream mb-8 leading-[1.1]">
-            {t.hero.title} <br />
-            <span className="text-coffee-yellow italic">{t.hero.titleItalic}</span> {t.hero.titleEnd}
+          <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif text-coffee-cream mb-8 leading-[1.1] max-w-4xl">
+            {t.hero.title} <span className="text-coffee-yellow italic">{t.hero.titleItalic}</span> {t.hero.titleEnd}
           </motion.h1>
           
           <motion.p variants={itemVariants} className="text-lg md:text-xl text-coffee-cream/80 leading-relaxed max-w-xl mb-12 font-light">
             {t.hero.desc}
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-col items-start gap-6">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <Link 
               to="/menu" 
               className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
@@ -88,7 +87,7 @@ const Hero = () => {
             </Link>
             <Link 
               to="/contact" 
-              className="text-coffee-cream/80 hover:text-coffee-cream transition-colors text-sm font-bold tracking-widest uppercase border-b border-coffee-cream/20 pb-1 ml-4"
+              className="text-coffee-cream/80 hover:text-coffee-cream transition-colors text-sm font-bold tracking-widest uppercase border-b border-coffee-cream/20 pb-1 sm:ml-4"
             >
               {t.hero.visitUs}
             </Link>
