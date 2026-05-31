@@ -86,7 +86,17 @@ const Gallery = () => {
         </motion.div>
       </div>
 
-      <section className="relative h-screen flex items-center overflow-hidden bg-coffee-cream">
+      <section className="relative h-screen flex items-center overflow-hidden bg-coffee-blue">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop" 
+            alt="înCotro Gallery Atmosphere" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-coffee-petrol/90 via-coffee-petrol/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-coffee-petrol/40 via-transparent to-transparent" />
+        </div>
+
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -101,21 +111,21 @@ const Gallery = () => {
                 transition={{ delay: 0.5, duration: 0.8 }}
                 className="h-[1px] bg-coffee-yellow" 
               />
-              <span className="text-coffee-gold font-bold tracking-[0.4em] uppercase text-xs">{t.gallery.visualStory}</span>
+              <span className="text-coffee-yellow font-bold tracking-[0.4em] uppercase text-xs">{t.gallery.visualStory}</span>
             </div>
             
-            <h1 className="text-5xl md:text-8xl font-serif text-coffee-petrol mb-8 leading-[1.1]">
+            <h1 className="text-5xl md:text-8xl font-serif text-coffee-cream mb-8 leading-[1.1]">
               {t.gallery.heroTitle}
             </h1>
             
-            <p className="text-lg md:text-xl text-coffee-charcoal/60 leading-relaxed max-w-xl mb-12 font-light">
+            <p className="text-lg md:text-xl text-coffee-cream/80 leading-relaxed max-w-xl mb-12 font-light">
               {t.gallery.heroDesc}
             </p>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
               <button 
                 onClick={scrollToGallery}
-                className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group shadow-sm"
+                className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
               >
                 {t.gallery.visualStory}
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
@@ -131,7 +141,7 @@ const Gallery = () => {
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer"
           onClick={scrollToGallery}
         >
-          <span className="text-[10px] text-coffee-petrol/40 uppercase tracking-[0.3em] mb-4">{t.hero.scroll}</span>
+          <span className="text-[10px] text-coffee-cream/40 uppercase tracking-[0.3em] mb-4">{t.hero.scroll}</span>
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
