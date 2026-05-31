@@ -72,7 +72,7 @@ const About = () => {
         </motion.div>
       </div>
 
-      <section className="relative h-screen flex items-center overflow-hidden bg-coffee-blue">
+      <section className="relative h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" 

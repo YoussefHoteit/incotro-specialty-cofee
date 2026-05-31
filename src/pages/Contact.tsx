@@ -65,7 +65,7 @@ const Contact = () => {
         </motion.div>
       </div>
 
-      <section className="relative h-screen flex items-center overflow-hidden bg-coffee-blue">
+      <section className="relative h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="/gallery/entrance-view.jpg" 

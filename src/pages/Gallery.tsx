@@ -86,7 +86,7 @@ const Gallery = () => {
         </motion.div>
       </div>
 
-      <section className="relative h-screen flex items-center overflow-hidden bg-coffee-blue">
+      <section className="relative h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop" 

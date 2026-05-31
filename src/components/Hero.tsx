@@ -51,8 +51,8 @@ const Hero = () => {
   };
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full overflow-hidden flex items-center bg-coffee-blue">
-      {/* Background with Optimized Parallax - Removed initial opacity: 0 to show instantly */}
+    <section ref={containerRef} className="relative h-screen w-full overflow-hidden flex items-center">
+      {/* Background with Optimized Parallax */}
       <motion.div 
         style={{ y }}
         initial={{ scale: 1.02 }}
