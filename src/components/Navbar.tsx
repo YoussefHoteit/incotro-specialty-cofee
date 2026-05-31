@@ -29,16 +29,11 @@ const Navbar = () => {
     { name: t.nav.contact, href: '/contact' },
   ];
 
-  const isSolidPage = location.pathname === '/menu';
-  const isDarkBgPage = location.pathname === '/' || location.pathname === '/about' || location.pathname === '/gallery' || location.pathname === '/contact';
+  // All pages now have light hero backgrounds
+  const showGlassy = isScrolled || isMobileMenuOpen;
   
-  // Determine if we should show the glassy effect
-  const showGlassy = isScrolled || isMobileMenuOpen || isSolidPage;
-  
-  // Determine text color based on scroll and page type
-  const textColorClass = (isDarkBgPage && !isScrolled && !isMobileMenuOpen) 
-    ? 'text-coffee-cream' 
-    : 'text-coffee-petrol';
+  // Text is always dark now since backgrounds are light
+  const textColorClass = 'text-coffee-petrol';
 
   const toggleLanguage = () => {
     setLanguage(language === 'ro' ? 'en' : 'ro');
