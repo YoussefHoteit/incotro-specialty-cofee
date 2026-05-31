@@ -15,7 +15,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -30,7 +30,15 @@ const Navbar = () => {
   ];
 
   const isSolidPage = location.pathname === '/menu';
-  const showGlassy = isScrolled || isSolidPage || isMobileMenuOpen;
+  const isDarkBgPage = location.pathname === '/' || location.pathname === '/about' || location.pathname === '/gallery' || location.pathname === '/contact';
+  
+  // Determine if we should show the glassy effect
+  const showGlassy = isScrolled || isMobileMenuOpen || isSolidPage;
+  
+  // Determine text color based on scroll and page type
+  const textColorClass = (isDarkBgPage && !isScrolled && !isMobileMenuOpen) 
+    ? 'text-coffee-cream' 
+    : 'text-coffee-petrol';
 
   const toggleLanguage = () => {
     setLanguage(language === 'ro' ? 'en' : 'ro');
@@ -50,9 +58,9 @@ const Navbar = () => {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         showGlassy
-          ? 'bg-coffee-cream/95 backdrop-blur-md text-coffee-petrol py-3 shadow-sm' 
-          : 'bg-transparent text-coffee-cream py-6'
-      }`}
+          ? 'bg-white/10 backdrop-blur-xl border-b border-white/10 py-3 shadow-lg' 
+          : 'bg-transparent py-6'
+      } ${textColorClass}`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link 
@@ -82,17 +90,17 @@ const Navbar = () => {
             ))}
           </div>
           
-          {/* Language Toggle - Visible on both Desktop and Mobile */}
+          {/* Language Toggle */}
           <button 
             onClick={toggleLanguage}
-            className="flex items-center space-x-1.5 text-xs font-bold tracking-widest uppercase hover:text-coffee-gold transition-colors p-2 rounded-full hover:bg-coffee-blue/5"
+            className="flex items-center space-x-1.5 text-xs font-bold tracking-widest uppercase hover:text-coffee-gold transition-colors p-2 rounded-full hover:bg-white/10"
             aria-label="Toggle Language"
           >
             <Globe size={18} />
             <span className="hidden xs:inline">{language === 'ro' ? 'RO' : 'EN'}</span>
           </button>
 
-          {/* Visit Us Button - Desktop only */}
+          {/* Visit Us Button */}
           <Link to="/contact" className="hidden md:block">
             <button className="bg-coffee-yellow text-coffee-petrol px-5 py-2 rounded-full text-sm font-bold hover:bg-coffee-gold transition-colors shadow-sm">
               {t.nav.visit}
@@ -113,17 +121,17 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-0 right-0 bg-coffee-cream text-coffee-petrol p-6 md:hidden shadow-xl"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="absolute top-full left-0 right-0 bg-coffee-cream/95 backdrop-blur-2xl text-coffee-petrol overflow-hidden shadow-2xl"
           >
-            <div className="flex flex-col space-y-4">
+            <div className="flex flex-col space-y-4 p-8">
               {navLinks.map((link) => (
                 <Link 
                   key={link.name} 
                   to={link.href}
-                  className="text-lg font-medium border-b border-coffee-blue/5 pb-2"
+                  className="text-xl font-serif border-b border-coffee-blue/5 pb-3"
                   onClick={(e) => {
                     handleLogoOrHomeClick(e, link.href);
                     if (link.href !== '/') setIsMobileMenuOpen(false);
@@ -134,7 +142,7 @@ const Navbar = () => {
               ))}
               
               <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                <button className="bg-coffee-yellow text-coffee-petrol w-full py-3 rounded-xl font-bold mt-4 shadow-md">
+                <button className="bg-coffee-yellow text-coffee-petrol w-full py-4 rounded-2xl font-bold mt-4 shadow-lg">
                   {t.nav.visit}
                 </button>
               </Link>
