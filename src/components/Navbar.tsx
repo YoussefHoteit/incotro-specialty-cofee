@@ -50,7 +50,7 @@ const Navbar = () => {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         showGlassy
-          ? 'bg-coffee-cream/95 backdrop-blur-md text-coffee-petrol py-3 shadow-sm border-b border-coffee-blue/10' 
+          ? 'bg-coffee-cream/95 backdrop-blur-md text-coffee-petrol py-3 shadow-sm' 
           : 'bg-transparent text-coffee-cream py-6'
       }`}
     >
@@ -116,7 +116,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-0 right-0 bg-coffee-cream text-coffee-petrol p-6 md:hidden shadow-xl border-t border-coffee-blue/5"
+            className="absolute top-full left-0 right-0 bg-coffee-cream text-coffee-petrol p-6 md:hidden shadow-xl"
           >
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
