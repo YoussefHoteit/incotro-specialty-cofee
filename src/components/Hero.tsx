@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
@@ -9,12 +9,20 @@ import { useLanguage } from '../context/LanguageContext';
 const Hero = () => {
   const { t } = useLanguage();
   const containerRef = useRef(null);
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  // Use a spring for smoother parallax transitions
+  const smoothYProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  const y = useTransform(smoothYProgress, [0, 1], ["0%", "20%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   
   const scrollToAbout = () => {
@@ -44,18 +52,19 @@ const Hero = () => {
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden flex items-center bg-coffee-blue">
-      {/* Background with Parallax and Opening Animation */}
+      {/* Background with Optimized Parallax */}
       <motion.div 
         style={{ y }}
-        initial={{ scale: 1.1, opacity: 0 }}
+        initial={{ scale: 1.05, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 2, ease: "easeOut" }}
-        className="absolute inset-0 z-0"
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="absolute inset-0 z-0 will-change-transform"
       >
         <img 
           src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2071&auto=format&fit=crop" 
           alt="înCotro Atmosphere" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover pointer-events-none"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-coffee-petrol/90 via-coffee-petrol/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-coffee-petrol/40 via-transparent to-transparent" />
