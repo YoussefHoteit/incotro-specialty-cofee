@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import { MapPin, Phone, Mail, Clock, Send, ExternalLink, ArrowRight, ArrowDown, Bean, Coffee } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { useImageReady } from '../hooks/useImageReady';
 
 const ContactCard = ({ icon: Icon, title, content }: { icon: any, title: string, content: string | React.ReactNode }) => (
   <motion.div 
@@ -23,6 +24,8 @@ const ContactCard = ({ icon: Icon, title, content }: { icon: any, title: string,
 
 const Contact = () => {
   const { t } = useLanguage();
+  const bgImage = "/gallery/entrance-view.jpg";
+  const isImageLoaded = useImageReady(bgImage);
 
   const scrollToInfo = () => {
     const element = document.getElementById('contact-info');
@@ -68,9 +71,11 @@ const Contact = () => {
       <section className="relative h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/gallery/entrance-view.jpg" 
+            src={bgImage} 
             alt="înCotro Café Exterior" 
             className="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-coffee-petrol/90 via-coffee-petrol/50 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-coffee-petrol/40 via-transparent to-transparent" />
@@ -79,7 +84,7 @@ const Contact = () => {
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={isImageLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-3xl"
           >
@@ -115,7 +120,7 @@ const Contact = () => {
 
         <motion.div 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={isImageLoaded ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 1.5, duration: 1 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer"
           onClick={scrollToInfo}

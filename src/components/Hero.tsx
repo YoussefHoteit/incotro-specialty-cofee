@@ -5,17 +5,19 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { useImageReady } from '../hooks/useImageReady';
 
 const Hero = () => {
   const { t } = useLanguage();
   const containerRef = useRef(null);
+  const bgImage = "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2071&auto=format&fit=crop";
+  const isImageLoaded = useImageReady(bgImage);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
 
-  // Use a spring for smoother parallax transitions
   const smoothYProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -61,10 +63,11 @@ const Hero = () => {
         className="absolute inset-0 z-0 will-change-transform"
       >
         <img 
-          src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2071&auto=format&fit=crop" 
+          src={bgImage} 
           alt="înCotro Atmosphere" 
           className="w-full h-full object-cover pointer-events-none"
           loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-coffee-petrol/90 via-coffee-petrol/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-coffee-petrol/40 via-transparent to-transparent" />
@@ -74,7 +77,7 @@ const Hero = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          animate={isImageLoaded ? "visible" : "hidden"}
           style={{ opacity }}
           className="max-w-5xl"
         >
@@ -116,7 +119,7 @@ const Hero = () => {
 
       <motion.div 
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={isImageLoaded ? { opacity: 1 } : { opacity: 0 }}
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer"
         onClick={scrollToAbout}
