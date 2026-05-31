@@ -52,12 +52,12 @@ const Hero = () => {
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden flex items-center bg-coffee-blue">
-      {/* Background with Optimized Parallax */}
+      {/* Background with Optimized Parallax - Removed initial opacity: 0 to show instantly */}
       <motion.div 
         style={{ y }}
-        initial={{ scale: 1.05, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
+        initial={{ scale: 1.02 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
         className="absolute inset-0 z-0 will-change-transform"
       >
         <img 
