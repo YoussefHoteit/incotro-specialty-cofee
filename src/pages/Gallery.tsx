@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { X, ChevronLeft, ChevronRight, Instagram, ArrowDown, ArrowRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Instagram, ArrowDown, ArrowRight, Bean, Coffee } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const Gallery = () => {
@@ -51,8 +51,26 @@ const Gallery = () => {
   };
 
   return (
-    <main className="min-h-screen bg-coffee-cream selection:bg-coffee-yellow selection:text-coffee-petrol">
+    <main className="min-h-screen bg-coffee-cream selection:bg-coffee-yellow selection:text-coffee-petrol relative overflow-hidden">
       <Navbar />
+
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div 
+          animate={{ x: [0, 20, 0], y: [0, -20, 0], rotate: [0, 10, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[30%] left-[-5%] text-coffee-yellow/10"
+        >
+          <Bean size={200} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ x: [0, -20, 0], y: [0, 20, 0], rotate: [0, -10, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-[30%] right-[-5%] text-coffee-blue/5"
+        >
+          <Coffee size={240} strokeWidth={0.5} />
+        </motion.div>
+      </div>
 
       <section className="relative h-screen flex items-center overflow-hidden bg-coffee-blue">
         <div className="absolute inset-0 z-0">
@@ -120,7 +138,7 @@ const Gallery = () => {
         </motion.div>
       </section>
 
-      <section id="gallery-grid" className="py-24 bg-coffee-cream">
+      <section id="gallery-grid" className="py-24 bg-coffee-cream relative z-10">
         <div className="container mx-auto px-4 md:px-6">
           <div className="columns-2 md:columns-2 lg:columns-3 gap-4 md:gap-8 space-y-4 md:space-y-8">
             {galleryImages.map((img, index) => (
@@ -148,7 +166,7 @@ const Gallery = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white relative z-10">
         <div className="container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

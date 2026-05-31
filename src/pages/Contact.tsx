@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { MapPin, Phone, Mail, Clock, Send, ExternalLink, ArrowRight, ArrowDown } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, ExternalLink, ArrowRight, ArrowDown, Bean, Coffee } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -30,8 +30,26 @@ const Contact = () => {
   };
 
   return (
-    <main className="min-h-screen bg-coffee-cream selection:bg-coffee-yellow selection:text-coffee-petrol">
+    <main className="min-h-screen bg-coffee-cream selection:bg-coffee-yellow selection:text-coffee-petrol relative overflow-hidden">
       <Navbar />
+
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div 
+          animate={{ y: [0, -25, 0], rotate: [0, 10, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[40%] left-[2%] text-coffee-yellow/10"
+        >
+          <Bean size={150} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ y: [0, 25, 0], rotate: [0, -10, 0] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+          className="absolute bottom-[10%] right-[2%] text-coffee-blue/5"
+        >
+          <Coffee size={180} strokeWidth={0.5} />
+        </motion.div>
+      </div>
 
       <section className="relative h-screen flex items-center overflow-hidden bg-coffee-blue">
         <div className="absolute inset-0 z-0">
@@ -99,7 +117,7 @@ const Contact = () => {
         </motion.div>
       </section>
 
-      <section id="contact-info" className="py-24 bg-coffee-cream">
+      <section id="contact-info" className="py-24 bg-coffee-cream relative z-10">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             <ContactCard 
@@ -126,7 +144,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white relative z-10">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <motion.div
@@ -209,7 +227,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-coffee-yellow">
+      <section className="py-24 bg-coffee-yellow relative z-10">
         <div className="container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

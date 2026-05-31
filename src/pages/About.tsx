@@ -37,8 +37,26 @@ const About = () => {
   };
 
   return (
-    <main className="min-h-screen bg-coffee-cream selection:bg-coffee-yellow selection:text-coffee-petrol">
+    <main className="min-h-screen bg-coffee-cream selection:bg-coffee-yellow selection:text-coffee-petrol relative overflow-hidden">
       <Navbar />
+
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div 
+          animate={{ y: [0, 30, 0], rotate: [0, 15, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[20%] right-[5%] text-coffee-yellow/10"
+        >
+          <Bean size={140} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ y: [0, -30, 0], rotate: [0, -15, 0] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-[20%] left-[5%] text-coffee-blue/5"
+        >
+          <Coffee size={160} strokeWidth={0.5} />
+        </motion.div>
+      </div>
 
       <section className="relative h-screen flex items-center overflow-hidden bg-coffee-blue">
         <div className="absolute inset-0 z-0">
@@ -107,7 +125,7 @@ const About = () => {
         </motion.div>
       </section>
 
-      <section id="our-story" className="py-32 bg-coffee-cream overflow-hidden">
+      <section id="our-story" className="py-32 bg-coffee-cream overflow-hidden relative z-10">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-16 items-center">
             <motion.div
@@ -189,7 +207,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white relative z-10">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-serif text-coffee-petrol mb-3">{t.about.standFor}</h2>
@@ -223,7 +241,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-32 bg-coffee-blue text-coffee-cream relative overflow-hidden">
+      <section className="py-32 bg-coffee-blue text-coffee-cream relative overflow-hidden z-10">
         <div className="absolute top-1/2 right-0 w-96 h-96 bg-coffee-yellow/5 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
         
         <div className="container mx-auto px-6 relative z-10">
@@ -287,7 +305,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-32 bg-coffee-cream relative overflow-hidden">
+      <section className="py-32 bg-coffee-cream relative overflow-hidden z-10">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-24">
@@ -337,7 +355,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white relative z-10">
         <div className="container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -358,7 +376,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-coffee-yellow">
+      <section className="py-24 bg-coffee-yellow relative z-10">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-serif text-coffee-petrol mb-8">{t.about.experienceSpace}</h2>
           <Link to="/contact">

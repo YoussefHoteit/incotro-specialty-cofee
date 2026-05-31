@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { Bean, Coffee } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 interface MenuItemProps {
@@ -39,7 +40,7 @@ interface MenuCategoryProps {
 }
 
 const MenuCategory = ({ title, number, items }: MenuCategoryProps) => (
-  <section className="mb-24">
+  <section className="mb-24 relative z-10">
     <div className="flex items-center justify-between mb-12">
       <h2 className="text-3xl md:text-4xl font-serif text-coffee-petrol pr-8 whitespace-nowrap">
         {title}
@@ -105,10 +106,28 @@ const Menu = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-coffee-cream selection:bg-coffee-yellow selection:text-coffee-petrol">
+    <main className="min-h-screen bg-coffee-cream selection:bg-coffee-yellow selection:text-coffee-petrol relative overflow-hidden">
       <Navbar />
       
-      <div className="pt-40 pb-24 container mx-auto px-6 max-w-5xl">
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div 
+          animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-40 left-[5%] text-coffee-yellow/10"
+        >
+          <Bean size={180} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-40 right-[5%] text-coffee-blue/5"
+        >
+          <Coffee size={220} strokeWidth={0.5} />
+        </motion.div>
+      </div>
+
+      <div className="pt-40 pb-24 container mx-auto px-6 max-w-5xl relative z-10">
         <header className="mb-24 text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start space-x-4 mb-4">
             <span className="text-coffee-gold font-bold text-xs tracking-[0.3em] uppercase">00</span>
