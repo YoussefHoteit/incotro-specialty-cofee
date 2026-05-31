@@ -66,9 +66,23 @@ const Gallery = () => {
         <motion.div 
           animate={{ x: [0, -20, 0], y: [0, 20, 0], rotate: [0, -10, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-[30%] right-[-5%] text-coffee-blue/5"
+          className="absolute top-[60%] right-[-5%] text-coffee-blue/5"
         >
           <Coffee size={240} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ y: [0, 40, 0] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[20%] left-[5%] text-coffee-yellow/10"
+        >
+          <Bean size={160} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ rotate: [-10, 10, -10] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[40%] right-[8%] text-coffee-blue/5"
+        >
+          <Coffee size={190} strokeWidth={0.5} />
         </motion.div>
       </div>
 

@@ -52,9 +52,23 @@ const About = () => {
         <motion.div 
           animate={{ y: [0, -30, 0], rotate: [0, -15, 0] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-[20%] left-[5%] text-coffee-blue/5"
+          className="absolute top-[50%] left-[5%] text-coffee-blue/5"
         >
           <Coffee size={160} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ x: [-20, 20, -20] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[20%] right-[10%] text-coffee-yellow/10"
+        >
+          <Bean size={120} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[40%] left-[8%] text-coffee-blue/5"
+        >
+          <Coffee size={180} strokeWidth={0.5} />
         </motion.div>
       </div>
 

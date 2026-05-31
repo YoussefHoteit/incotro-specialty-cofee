@@ -45,9 +45,23 @@ const Contact = () => {
         <motion.div 
           animate={{ y: [0, 25, 0], rotate: [0, -10, 0] }}
           transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-          className="absolute bottom-[10%] right-[2%] text-coffee-blue/5"
+          className="absolute top-[60%] right-[2%] text-coffee-blue/5"
         >
           <Coffee size={180} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[15%] left-[10%] text-coffee-yellow/10"
+        >
+          <Bean size={130} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ x: [0, 30, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[30%] right-[5%] text-coffee-blue/5"
+        >
+          <Coffee size={210} strokeWidth={0.5} />
         </motion.div>
       </div>
 

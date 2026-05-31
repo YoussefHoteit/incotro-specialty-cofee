@@ -121,9 +121,23 @@ const Menu = () => {
         <motion.div 
           animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute bottom-40 right-[5%] text-coffee-blue/5"
+          className="absolute top-[40%] right-[5%] text-coffee-blue/5"
         >
           <Coffee size={220} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ x: [0, 15, 0], y: [0, 15, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-[30%] left-[10%] text-coffee-yellow/5"
+        >
+          <Bean size={140} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ rotate: [0, 360] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-40 right-[10%] text-coffee-blue/5"
+        >
+          <Coffee size={200} strokeWidth={0.5} />
         </motion.div>
       </div>
 
