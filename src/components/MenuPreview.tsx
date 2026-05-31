@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Coffee } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const MenuPreviewItem = ({ name, price, desc }: { name: string, price: string, desc: string }) => (
@@ -38,8 +39,34 @@ const MenuPreview = () => {
   ];
 
   return (
-    <section id="menu" className="py-24 bg-coffee-cream">
-      <div className="container mx-auto px-6 max-w-5xl">
+    <section id="menu" className="py-24 bg-coffee-cream relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div 
+          animate={{ 
+            x: [0, 15, 0],
+            y: [0, -10, 0],
+            rotate: [0, 5, 0]
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 -left-10 text-coffee-yellow/10"
+        >
+          <Coffee size={200} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ 
+            x: [0, -15, 0],
+            y: [0, 10, 0],
+            rotate: [0, -5, 0]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-1/4 -right-10 text-coffee-blue/5"
+        >
+          <Coffee size={240} strokeWidth={0.5} />
+        </motion.div>
+      </div>
+
+      <div className="container mx-auto px-6 max-w-5xl relative z-10">
         <div className="flex items-center justify-between mb-16">
           <div className="flex flex-col">
             <span className="text-coffee-yellow font-bold text-xs uppercase tracking-[0.3em] mb-2">{t.menuPreview.favorites}</span>

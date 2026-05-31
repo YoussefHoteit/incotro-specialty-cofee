@@ -31,7 +31,28 @@ const BrandIntro = () => {
 
   return (
     <section id="about" className="py-32 bg-coffee-cream relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <motion.div 
+          animate={{ 
+            y: [0, -20, 0],
+            rotate: [0, 10, 0]
+          }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-20 left-[10%] text-coffee-yellow/20"
+        >
+          <Bean size={120} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ 
+            y: [0, 20, 0],
+            rotate: [0, -15, 0]
+          }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-40 right-[10%] text-coffee-blue/10"
+        >
+          <Bean size={160} strokeWidth={0.5} />
+        </motion.div>
         <div className="absolute top-40 right-[5%] w-96 h-96 bg-coffee-yellow/5 rounded-full blur-[120px]" />
         <div className="absolute bottom-40 left-[5%] w-80 h-80 bg-coffee-blue/5 rounded-full blur-[100px]" />
       </div>
