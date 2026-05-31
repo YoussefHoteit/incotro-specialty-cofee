@@ -5,13 +5,13 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { useImageReady } from '../hooks/useImageReady';
+import { useLoading } from '../context/LoadingContext';
 
 const Hero = () => {
   const { t } = useLanguage();
+  const { isFinished } = useLoading();
   const containerRef = useRef(null);
   const bgImage = "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2071&auto=format&fit=crop";
-  const isImageLoaded = useImageReady(bgImage);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -77,7 +77,7 @@ const Hero = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={isImageLoaded ? "visible" : "hidden"}
+          animate={isFinished ? "visible" : "hidden"}
           style={{ opacity }}
           className="max-w-5xl"
         >
@@ -119,7 +119,7 @@ const Hero = () => {
 
       <motion.div 
         initial={{ opacity: 0 }}
-        animate={isImageLoaded ? { opacity: 1 } : { opacity: 0 }}
+        animate={isFinished ? { opacity: 1 } : { opacity: 0 }}
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer"
         onClick={scrollToAbout}

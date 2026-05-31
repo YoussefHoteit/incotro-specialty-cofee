@@ -6,13 +6,13 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { X, ChevronLeft, ChevronRight, Instagram, ArrowDown, ArrowRight, Bean, Coffee } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { useImageReady } from '../hooks/useImageReady';
+import { useLoading } from '../context/LoadingContext';
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const { t } = useLanguage();
+  const { isFinished } = useLoading();
   const bgImage = "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop";
-  const isImageLoaded = useImageReady(bgImage);
 
   const galleryImages = [
     { url: "/gallery/entrance-view.jpg", category: t.gallery.catSpace, caption: t.gallery.capWelcome },
@@ -105,7 +105,7 @@ const Gallery = () => {
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            animate={isImageLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            animate={isFinished ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-3xl"
           >
@@ -141,7 +141,7 @@ const Gallery = () => {
 
         <motion.div 
           initial={{ opacity: 0 }}
-          animate={isImageLoaded ? { opacity: 1 } : { opacity: 0 }}
+          animate={isFinished ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 1.5, duration: 1 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer"
           onClick={scrollToGallery}
