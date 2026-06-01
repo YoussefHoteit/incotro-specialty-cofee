@@ -60,10 +60,10 @@ const BrandIntro = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mb-32">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="text-coffee-gold font-bold text-xs uppercase tracking-[0.4em] mb-6 block">{t.brandIntro.philosophy}</span>
             <h2 className="text-4xl md:text-7xl font-serif text-coffee-petrol mb-8 leading-[1.1]">
