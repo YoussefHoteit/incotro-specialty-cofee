@@ -4,9 +4,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Bean, Home, Users } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useIsMobile } from '../hooks/use-mobile';
 
 const BrandIntro = () => {
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
 
   const features = [
     {
@@ -50,6 +52,26 @@ const BrandIntro = () => {
         ease: [0.22, 1, 0.36, 1],
       },
     },
+  };
+
+  // Mobile-specific variants for the timeline items
+  const featureContainerVariants = {
+    hidden: isMobile ? { opacity: 0, x: 50 } : { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      y: 0,
+      transition: { 
+        duration: 0.8, 
+        ease: [0.21, 0.47, 0.32, 0.98],
+        staggerChildren: 0.1 // Stagger between icon and text on mobile
+      } 
+    }
+  };
+
+  const childVariants = {
+    hidden: isMobile ? { opacity: 0, x: 20 } : {},
+    visible: { opacity: 1, x: 0 }
   };
 
   return (
@@ -120,15 +142,18 @@ const BrandIntro = () => {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+                variants={featureContainerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: !isMobile, margin: "-100px" }}
                 className={`relative flex flex-col md:flex-row items-start ${
                   index % 2 !== 0 ? 'md:flex-row-reverse' : ''
                 }`}
               >
-                <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 flex items-center justify-center z-20">
+                <motion.div 
+                  variants={childVariants}
+                  className="absolute left-0 md:left-1/2 md:-translate-x-1/2 flex items-center justify-center z-20"
+                >
                   <div className="relative">
                     <div className="w-12 h-12 rounded-full bg-white border border-coffee-blue/10 flex items-center justify-center shadow-sm group-hover:border-coffee-yellow transition-colors duration-500">
                       <div className="text-coffee-petrol">
@@ -139,18 +164,21 @@ const BrandIntro = () => {
                       {feature.number}
                     </div>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className={`pl-20 md:pl-0 w-full md:w-[42%] ${
-                  index % 2 === 0 ? 'md:text-right md:pr-16' : 'md:text-left md:pl-16'
-                }`}>
+                <motion.div 
+                  variants={childVariants}
+                  className={`pl-20 md:pl-0 w-full md:w-[42%] ${
+                    index % 2 === 0 ? 'md:text-right md:pr-16' : 'md:text-left md:pl-16'
+                  }`}
+                >
                   <h3 className="text-2xl md:text-3xl font-bold text-coffee-petrol mb-4">
                     {feature.title}
                   </h3>
                   <p className="text-coffee-charcoal/60 text-lg leading-relaxed">
                     {feature.description}
                   </p>
-                </div>
+                </motion.div>
 
                 <div className="hidden md:block md:w-[42%]" />
               </motion.div>
