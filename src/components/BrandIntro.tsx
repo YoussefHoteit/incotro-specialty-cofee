@@ -4,9 +4,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Bean, Home, Users } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const BrandIntro = () => {
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -83,7 +85,7 @@ const BrandIntro = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, margin: "-50px" }}
+            viewport={{ once: false, margin: "-100px" }}
           >
             <motion.span 
               variants={itemVariants}
@@ -115,9 +117,17 @@ const BrandIntro = () => {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                initial={{ 
+                  opacity: 0, 
+                  x: isMobile ? 50 : 0, 
+                  y: isMobile ? 0 : 40 
+                }}
+                whileInView={{ 
+                  opacity: 1, 
+                  x: 0, 
+                  y: 0 
+                }}
+                viewport={{ once: false, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
                 className={`relative flex flex-col md:flex-row items-start ${
                   index % 2 !== 0 ? 'md:flex-row-reverse' : ''
