@@ -130,7 +130,7 @@ const Gallery = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
               <button 
                 onClick={scrollToGallery}
-                className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
+                className="bg-coffee-yellow/10 backdrop-blur-md border border-coffee-yellow/30 text-coffee-yellow px-10 py-4 rounded-full font-bold text-sm hover:bg-coffee-yellow/20 transition-all flex items-center group min-w-[220px] justify-center"
               >
                 {t.gallery.visualStory}
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
