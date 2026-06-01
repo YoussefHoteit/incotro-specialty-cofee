@@ -32,8 +32,14 @@ const Navbar = () => {
   const isSolidPage = location.pathname === '/menu';
   const isDarkBgPage = location.pathname === '/' || location.pathname === '/about' || location.pathname === '/gallery' || location.pathname === '/contact';
   
-  // Determine if we should show the glassy effect
-  const showGlassy = isScrolled || isMobileMenuOpen || isSolidPage;
+  // Determine background and padding based on state
+  const navbarBgClass = isMobileMenuOpen 
+    ? 'bg-coffee-cream/95 backdrop-blur-xl' 
+    : (isScrolled || isSolidPage)
+      ? 'bg-white/10 backdrop-blur-xl shadow-lg'
+      : 'bg-transparent';
+
+  const navbarPaddingClass = (isScrolled || isMobileMenuOpen || isSolidPage) ? 'py-3' : 'py-6';
   
   // Determine text color based on scroll and page type
   const textColorClass = (isDarkBgPage && !isScrolled && !isMobileMenuOpen) 
@@ -56,11 +62,7 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        showGlassy
-          ? 'bg-white/10 backdrop-blur-xl py-3 shadow-lg' 
-          : 'bg-transparent py-6'
-      } ${textColorClass}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navbarBgClass} ${navbarPaddingClass} ${textColorClass}`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link 
