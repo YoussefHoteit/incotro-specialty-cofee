@@ -99,17 +99,17 @@ const Hero = () => {
             {t.hero.desc}
           </motion.p>
 
-          <motion.div variants={itemVariants} className="inline-flex flex-col items-center gap-6">
+          <motion.div variants={itemVariants} className="inline-flex flex-col items-center gap-4">
             <Link 
               to="/menu" 
-              className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
+              className="bg-coffee-yellow/10 backdrop-blur-md border border-coffee-yellow/30 text-coffee-yellow px-10 py-4 rounded-full font-bold text-sm hover:bg-coffee-yellow/20 transition-all flex items-center group min-w-[220px] justify-center"
             >
               {t.hero.viewMenu}
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
             </Link>
             <Link 
               to="/contact" 
-              className="text-coffee-cream/80 hover:text-coffee-cream transition-colors text-sm font-bold tracking-widest uppercase border-b border-coffee-cream/20 pb-1"
+              className="bg-white/5 backdrop-blur-md border border-white/10 text-coffee-cream/80 px-10 py-4 rounded-full font-bold text-sm hover:bg-white/10 transition-all flex items-center justify-center min-w-[220px]"
             >
               {t.hero.visitUs}
             </Link>
