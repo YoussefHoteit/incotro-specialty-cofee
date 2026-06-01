@@ -99,7 +99,7 @@ const Hero = () => {
             {t.hero.desc}
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <motion.div variants={itemVariants} className="inline-flex flex-col items-center gap-6">
             <Link 
               to="/menu" 
               className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
@@ -109,7 +109,7 @@ const Hero = () => {
             </Link>
             <Link 
               to="/contact" 
-              className="text-coffee-cream/80 hover:text-coffee-cream transition-colors text-sm font-bold tracking-widest uppercase border-b border-coffee-cream/20 pb-1 sm:ml-4"
+              className="text-coffee-cream/80 hover:text-coffee-cream transition-colors text-sm font-bold tracking-widest uppercase border-b border-coffee-cream/20 pb-1"
             >
               {t.hero.visitUs}
             </Link>
