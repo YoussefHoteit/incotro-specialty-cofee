@@ -17,7 +17,7 @@ const LoadingScreen = () => {
           className="fixed inset-0 z-[9999] bg-coffee-cream flex items-center justify-center"
         >
           <div className="relative flex flex-col items-center">
-            {/* Centered Logo with Circular Crop */}
+            {/* Centered Logo with Tight Circular Crop */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -27,15 +27,15 @@ const LoadingScreen = () => {
               }}
               className="relative mb-12"
             >
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-[0_0_50px_rgba(242,195,0,0.2)] relative">
+              <div className="w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden shadow-[0_0_60px_rgba(242,195,0,0.3)] relative bg-white">
                 <img 
                   src="/logo.jpeg" 
                   alt="înCotro Logo" 
-                  className="w-full h-full object-cover scale-105"
+                  className="w-full h-full object-cover scale-[1.4]"
                 />
               </div>
               
-              {/* Subtle pulsing ring around the logo */}
+              {/*Subtle pulsing ring around the logo */}
               <motion.div 
                 animate={{ 
                   scale: [1, 1.1, 1],
