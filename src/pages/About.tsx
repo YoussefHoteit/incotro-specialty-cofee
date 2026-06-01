@@ -5,9 +5,6 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import SignatureExperience from '@/components/SignatureExperience';
-import Community from '@/components/Community';
-import FinalCTA from '@/components/FinalCTA';
 import { Bean, Users, Sparkles, Coffee, ArrowRight, ArrowDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useLoading } from '../context/LoadingContext';
@@ -62,6 +59,20 @@ const About = () => {
         >
           <Coffee size={160} strokeWidth={0.5} />
         </motion.div>
+        <motion.div 
+          animate={{ x: [-20, 20, -20] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[20%] right-[10%] text-coffee-yellow/10"
+        >
+          <Bean size={120} strokeWidth={0.5} />
+        </motion.div>
+        <motion.div 
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[40%] left-[8%] text-coffee-blue/5"
+        >
+          <Coffee size={180} strokeWidth={0.5} />
+        </motion.div>
       </div>
 
       <section className="relative h-screen flex items-center overflow-hidden">
@@ -106,7 +117,7 @@ const About = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
               <button 
                 onClick={scrollToStory}
-                className="bg-coffee-yellow/10 backdrop-blur-md border border-coffee-yellow/30 text-coffee-yellow px-10 py-4 rounded-full font-bold text-sm hover:bg-coffee-yellow/20 transition-all flex items-center group min-w-[220px] justify-center"
+                className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
               >
                 {t.about.discover}
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
@@ -159,6 +170,18 @@ const About = () => {
                   {t.about.storyP3}
                 </p>
               </div>
+
+              <div className="mt-12 flex items-center space-x-8">
+                <div>
+                  <span className="block text-3xl font-serif text-coffee-petrol">2023</span>
+                  <span className="text-[10px] uppercase tracking-widest text-coffee-gold font-bold">{t.about.established}</span>
+                </div>
+                <div className="w-[1px] h-10 bg-coffee-blue/10" />
+                <div>
+                  <span className="block text-3xl font-serif text-coffee-petrol">100%</span>
+                  <span className="text-[10px] uppercase tracking-widest text-coffee-gold font-bold">{t.about.specialtyGrade}</span>
+                </div>
+              </div>
             </motion.div>
 
             <motion.div
@@ -168,12 +191,36 @@ const About = () => {
               className="lg:col-span-6 order-1 lg:order-2 relative"
             >
               <div className="relative z-10">
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-coffee-yellow/10 rounded-full blur-3xl" />
                 <img 
                   src="/gallery/entrance-view.jpg" 
                   alt="înCotro Entrance" 
                   className="rounded-[3rem] shadow-2xl w-full aspect-[4/5] object-cover"
                 />
+                
+                <motion.div 
+                  initial={{ x: 20, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl z-20 max-w-[240px] border border-coffee-blue/5"
+                >
+                  <DetailLabel text={t.about.blueWalls} />
+                  <p className="text-coffee-petrol font-serif text-lg italic leading-snug">
+                    "{t.about.soulQuote}"
+                  </p>
+                </motion.div>
+
+                <motion.div 
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.7 }}
+                  className="absolute top-12 -right-8 bg-coffee-yellow p-4 rounded-2xl shadow-lg z-20 hidden md:block"
+                >
+                  <DetailLabel text={t.about.yellowDetails} />
+                </motion.div>
               </div>
+
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-coffee-blue/5 rounded-full pointer-events-none" />
             </motion.div>
           </div>
         </div>
@@ -213,8 +260,70 @@ const About = () => {
         </div>
       </section>
 
-      <SignatureExperience />
-      
+      <section className="py-32 bg-coffee-blue text-coffee-cream relative overflow-hidden z-10">
+        <div className="absolute top-1/2 right-0 w-96 h-96 bg-coffee-yellow/5 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="order-1"
+            >
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-8 h-[1px] bg-coffee-yellow" />
+                <span className="text-coffee-yellow font-bold tracking-[0.3em] uppercase text-[10px]">Atmosphere</span>
+              </div>
+              
+              <h2 className="text-4xl md:text-6xl font-serif mb-8 leading-tight">{t.about.vibeTitle}</h2>
+              
+              <p className="text-lg md:text-xl text-coffee-cream/70 leading-relaxed mb-10 font-light">
+                {t.about.vibeDesc}
+              </p>
+              
+              <div className="flex flex-wrap gap-3 mb-12 lg:mb-0">
+                {[
+                  t.about.vibeTag1,
+                  t.about.vibeTag2,
+                  t.about.vibeTag3,
+                  t.about.vibeTag4
+                ].map((tag, i) => (
+                  <motion.span 
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="px-4 py-2 rounded-full border border-coffee-yellow/30 text-coffee-yellow text-[10px] md:text-xs font-bold uppercase tracking-widest bg-coffee-yellow/5 whitespace-nowrap"
+                  >
+                    {tag}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="order-2 relative"
+            >
+              <div className="relative">
+                <div className="absolute -inset-4 border border-coffee-yellow/10 rounded-[3.5rem] pointer-events-none" />
+                
+                <img 
+                  src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1974&auto=format&fit=crop" 
+                  alt="Atmosphere" 
+                  className="rounded-[3rem] shadow-2xl w-full object-cover aspect-[4/3] lg:aspect-square"
+                />
+                
+                <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-coffee-yellow/10 rounded-full blur-2xl pointer-events-none" />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-32 bg-coffee-cream relative overflow-hidden z-10">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
@@ -265,8 +374,39 @@ const About = () => {
         </div>
       </section>
 
-      <Community />
-      <FinalCTA />
+      <section className="py-24 bg-white relative z-10">
+        <div className="container mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
+            <div className="text-coffee-yellow mb-8">
+              <Users size={48} className="mx-auto" />
+            </div>
+            <blockquote className="text-3xl md:text-4xl font-serif text-coffee-petrol italic mb-8 leading-tight">
+              "{t.about.quote}"
+            </blockquote>
+            <p className="text-lg text-coffee-charcoal/60">
+              {t.about.quoteSub}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-coffee-yellow relative z-10">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl md:text-5xl font-serif text-coffee-petrol mb-8">{t.about.experienceSpace}</h2>
+          <Link to="/contact">
+            <button className="bg-coffee-petrol text-coffee-cream px-10 py-5 rounded-full font-bold text-xl hover:bg-coffee-blue transition-all inline-flex items-center group">
+              {t.about.visitBucharest}
+              <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+            </button>
+          </Link>
+        </div>
+      </section>
+
       <Footer />
     </main>
   );
