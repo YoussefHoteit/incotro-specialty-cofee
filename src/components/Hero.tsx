@@ -102,7 +102,7 @@ const Hero = () => {
           <motion.div variants={itemVariants} className="inline-flex flex-col items-center gap-6">
             <Link 
               to="/menu" 
-              className="bg-white/10 backdrop-blur-md border border-white/20 text-coffee-cream px-6 py-3 rounded-full font-bold text-sm hover:bg-white/20 transition-all flex items-center group"
+              className="bg-coffee-yellow text-coffee-petrol px-8 py-4 rounded-full font-bold text-sm hover:bg-coffee-gold transition-all flex items-center group"
             >
               {t.hero.viewMenu}
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
