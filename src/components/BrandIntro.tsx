@@ -31,7 +31,6 @@ const BrandIntro = () => {
     }
   ];
 
-  // Variants for the top Philosophy text (All devices)
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -55,9 +54,9 @@ const BrandIntro = () => {
     },
   };
 
-  // Variants for the timeline items (Mobile only)
-  const timelineContainerVariants = {
-    hidden: isMobile ? { opacity: 0, x: 50 } : { opacity: 1, x: 0, y: 0 },
+  // Mobile-specific variants for the timeline items
+  const featureContainerVariants = {
+    hidden: isMobile ? { opacity: 0, x: 50 } : { opacity: 0, y: 40 },
     visible: { 
       opacity: 1, 
       x: 0, 
@@ -65,13 +64,13 @@ const BrandIntro = () => {
       transition: { 
         duration: 0.8, 
         ease: [0.21, 0.47, 0.32, 0.98],
-        staggerChildren: 0.1
+        staggerChildren: 0.1 // Stagger between icon and text on mobile
       } 
     }
   };
 
-  const timelineChildVariants = {
-    hidden: isMobile ? { opacity: 0, x: 20 } : { opacity: 1, x: 0 },
+  const childVariants = {
+    hidden: isMobile ? { opacity: 0, x: 20 } : {},
     visible: { opacity: 1, x: 0 }
   };
 
@@ -143,7 +142,7 @@ const BrandIntro = () => {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                variants={timelineContainerVariants}
+                variants={featureContainerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: !isMobile, margin: "-100px" }}
@@ -152,7 +151,7 @@ const BrandIntro = () => {
                 }`}
               >
                 <motion.div 
-                  variants={timelineChildVariants}
+                  variants={childVariants}
                   className="absolute left-0 md:left-1/2 md:-translate-x-1/2 flex items-center justify-center z-20"
                 >
                   <div className="relative">
@@ -168,7 +167,7 @@ const BrandIntro = () => {
                 </motion.div>
 
                 <motion.div 
-                  variants={timelineChildVariants}
+                  variants={childVariants}
                   className={`pl-20 md:pl-0 w-full md:w-[42%] ${
                     index % 2 === 0 ? 'md:text-right md:pr-16' : 'md:text-left md:pl-16'
                   }`}
