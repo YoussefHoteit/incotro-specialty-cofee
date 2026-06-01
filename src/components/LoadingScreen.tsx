@@ -27,15 +27,15 @@ const LoadingScreen = () => {
               }}
               className="relative mb-12"
             >
-              <div className="w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden shadow-[0_0_60px_rgba(242,195,0,0.3)] relative bg-white">
+              <div className="w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden shadow-[0_0_60px_rgba(242,195,0,0.3)] relative">
                 <img 
                   src="/logo.jpeg" 
                   alt="înCotro Logo" 
-                  className="w-full h-full object-cover scale-[1.4]"
+                  className="w-full h-full object-cover scale-[1.6]"
                 />
               </div>
               
-              {/*Subtle pulsing ring around the logo */}
+              {/* Subtle pulsing ring around the logo */}
               <motion.div 
                 animate={{ 
                   scale: [1, 1.1, 1],
