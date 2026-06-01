@@ -102,9 +102,9 @@ const Navbar = () => {
             <span className="hidden xs:inline">{language === 'ro' ? 'RO' : 'EN'}</span>
           </button>
 
-          {/* Visit Us Button */}
+          {/* Visit Us Button - Desktop/Tablet */}
           <Link to="/contact" className="hidden md:block">
-            <button className="bg-coffee-yellow text-coffee-petrol px-5 py-2 rounded-full text-sm font-bold hover:bg-coffee-gold transition-colors shadow-sm">
+            <button className="bg-coffee-yellow/10 backdrop-blur-md border border-coffee-yellow/30 text-coffee-yellow px-6 py-2 rounded-full text-sm font-bold hover:bg-coffee-yellow/20 transition-all shadow-sm">
               {t.nav.visit}
             </button>
           </Link>
@@ -144,7 +144,7 @@ const Navbar = () => {
               ))}
               
               <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                <button className="bg-coffee-yellow text-coffee-petrol w-full py-4 rounded-2xl font-bold mt-4 shadow-lg">
+                <button className="bg-coffee-yellow/10 backdrop-blur-md border border-coffee-yellow/30 text-coffee-yellow w-full py-4 rounded-2xl font-bold mt-4 hover:bg-coffee-yellow/20 transition-all shadow-sm">
                   {t.nav.visit}
                 </button>
               </Link>
