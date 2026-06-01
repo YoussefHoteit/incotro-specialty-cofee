@@ -8,6 +8,26 @@ import { useLanguage } from '../context/LanguageContext';
 const BrandIntro = () => {
   const { t } = useLanguage();
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   const features = [
     {
       icon: <Bean size={24} />,
@@ -60,19 +80,30 @@ const BrandIntro = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mb-32">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: "-100px" }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, margin: "-50px" }}
           >
-            <span className="text-coffee-gold font-bold text-xs uppercase tracking-[0.4em] mb-6 block">{t.brandIntro.philosophy}</span>
-            <h2 className="text-4xl md:text-7xl font-serif text-coffee-petrol mb-8 leading-[1.1]">
+            <motion.span 
+              variants={itemVariants}
+              className="text-coffee-gold font-bold text-xs uppercase tracking-[0.4em] mb-6 block"
+            >
+              {t.brandIntro.philosophy}
+            </motion.span>
+            <motion.h2 
+              variants={itemVariants}
+              className="text-4xl md:text-7xl font-serif text-coffee-petrol mb-8 leading-[1.1]"
+            >
               {t.brandIntro.title} <br />
               <span className="text-coffee-gold italic">{t.brandIntro.titleItalic}</span>
-            </h2>
-            <p className="text-lg md:text-xl text-coffee-charcoal/60 leading-relaxed max-w-2xl">
+            </motion.h2>
+            <motion.p 
+              variants={itemVariants}
+              className="text-lg md:text-xl text-coffee-charcoal/60 leading-relaxed max-w-2xl"
+            >
               {t.brandIntro.desc}
-            </p>
+            </motion.p>
           </motion.div>
         </div>
 
